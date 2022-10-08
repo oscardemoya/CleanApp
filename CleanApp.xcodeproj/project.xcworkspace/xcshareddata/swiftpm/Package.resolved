@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "networking",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/oscardemoya/Networking",
+      "state" : {
+        "revision" : "8890d1b4fcb5d489239b65526ee4ee1046218d1d",
+        "version" : "0.1.0"
+      }
+    }
+  ],
+  "version" : 2
+}
