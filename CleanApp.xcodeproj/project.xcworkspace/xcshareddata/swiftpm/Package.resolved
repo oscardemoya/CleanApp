@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/oscardemoya/Networking",
       "state" : {
-        "revision" : "8890d1b4fcb5d489239b65526ee4ee1046218d1d",
-        "version" : "0.1.0"
+        "branch" : "main",
+        "revision" : "f9ade952e3f46257ffcddbcaa908c2dbcba6445a"
       }
     }
   ],

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2664F64328F22B8B00FB3740 /* Networking in Frameworks */ = {isa = PBXBuildFile; productRef = 2664F64228F22B8B00FB3740 /* Networking */; };
 		26F04A3028EE7EF100A189DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F04A2F28EE7EF100A189DA /* AppDelegate.swift */; };
 		26F04A3228EE7EF100A189DA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F04A3128EE7EF100A189DA /* SceneDelegate.swift */; };
 		26F04A3428EE7EF100A189DA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F04A3328EE7EF100A189DA /* ViewController.swift */; };
@@ -16,7 +17,6 @@
 		26F04A4728EE7EF200A189DA /* CleanAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F04A4628EE7EF200A189DA /* CleanAppTests.swift */; };
 		26F04A5128EE7EF300A189DA /* CleanAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F04A5028EE7EF300A189DA /* CleanAppUITests.swift */; };
 		26F04A5328EE7EF300A189DA /* CleanAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F04A5228EE7EF300A189DA /* CleanAppUITestsLaunchTests.swift */; };
-		26FB5B6128F228C5000097EC /* Networking in Frameworks */ = {isa = PBXBuildFile; productRef = 26FB5B6028F228C5000097EC /* Networking */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,7 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				26FB5B6128F228C5000097EC /* Networking in Frameworks */,
+				2664F64328F22B8B00FB3740 /* Networking in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -213,7 +213,7 @@
 			);
 			name = CleanApp;
 			packageProductDependencies = (
-				26FB5B6028F228C5000097EC /* Networking */,
+				2664F64228F22B8B00FB3740 /* Networking */,
 			);
 			productName = CleanApp;
 			productReference = 26F04A2C28EE7EF100A189DA /* CleanApp.app */;
@@ -289,7 +289,7 @@
 			);
 			mainGroup = 26F04A2328EE7EF100A189DA;
 			packageReferences = (
-				26FB5B5F28F228C5000097EC /* XCRemoteSwiftPackageReference "Networking" */,
+				2664F64128F22B8B00FB3740 /* XCRemoteSwiftPackageReference "Networking" */,
 			);
 			productRefGroup = 26F04A2D28EE7EF100A189DA /* Products */;
 			projectDirPath = "";
@@ -710,17 +710,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		26FB5B5F28F228C5000097EC /* XCRemoteSwiftPackageReference "Networking" */ = {
+		2664F64128F22B8B00FB3740 /* XCRemoteSwiftPackageReference "Networking" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/oscardemoya/Networking";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.0.0;
+				branch = main;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2664F64228F22B8B00FB3740 /* Networking */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2664F64128F22B8B00FB3740 /* XCRemoteSwiftPackageReference "Networking" */;
+			productName = Networking;
+		};
 		268295F128EFBC9500DFFFD3 /* Domain */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Domain;
@@ -728,11 +733,6 @@
 		26EC40B628EFD22F00980322 /* Common */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Common;
-		};
-		26FB5B6028F228C5000097EC /* Networking */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 26FB5B5F28F228C5000097EC /* XCRemoteSwiftPackageReference "Networking" */;
-			productName = Networking;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
