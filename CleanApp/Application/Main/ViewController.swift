@@ -13,12 +13,11 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let api = TypicodeAPI()
-        let request = Request<[Post]>(path: "/posts")
         let client = APIClient(api: api)
         Task {
             do {
-                let posts: [Post] = try await client.send(request: request)
-                print(posts)
+                let response: Response<[Post]> = try await client.get(path: "/posts")
+                print(response.value)
             } catch {
                 print(error)
             }

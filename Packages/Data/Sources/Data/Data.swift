@@ -1,4 +1,4 @@
-public struct Domain {
+public struct Data {
     public init() {
     }
 }
