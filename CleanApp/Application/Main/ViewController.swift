@@ -10,13 +10,13 @@ import Networking
 
 class ViewController: UIViewController {
 
+    let client = APIClient(baseURL: "https://jsonplaceholder.typicode.com")
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        let api = TypicodeAPI()
-        let client = APIClient(api: api)
         Task {
             do {
-                let response: Response<[Post]> = try await client.get(path: "/posts")
+                let response: Response<[Post]> = try await client.get("/posts")
                 print(response.value)
             } catch {
                 print(error)
@@ -24,19 +24,6 @@ class ViewController: UIViewController {
         }
     }
 
-}
-
-enum Environment {
-    case production
-}
-
-struct TypicodeAPI: API {
-    var environment: Environment
-    var baseURL: URL { "https://jsonplaceholder.typicode.com" }
-    
-    init(environment: Environment = .production) {
-        self.environment = environment
-    }
 }
 
 struct Post: Decodable {
