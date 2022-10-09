@@ -4,21 +4,21 @@
 import PackageDescription
 
 let package = Package(
-    name: "Domain",
-    platforms: [.iOS(.v16)],
+    name: "Presentation",
     products: [
         .library(
-            name: "Domain",
-            targets: ["Domain"])
+            name: "Presentation",
+            targets: ["Presentation"])
     ],
     dependencies: [
+        .package(path: "../Domain")
     ],
     targets: [
         .target(
-            name: "Domain",
-            dependencies: []),
+            name: "Presentation",
+            dependencies: ["Domain"]),
         .testTarget(
-            name: "DomainTests",
-            dependencies: ["Domain"])
+            name: "PresentationTests",
+            dependencies: ["Presentation"])
     ]
 )

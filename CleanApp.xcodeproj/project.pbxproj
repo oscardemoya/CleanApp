@@ -51,6 +51,7 @@
 
 /* Begin PBXFileReference section */
 		2664F64428F328A900FB3740 /* Data */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Data; sourceTree = "<group>"; };
+		2664F64828F37A8600FB3740 /* Presentation */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Presentation; sourceTree = "<group>"; };
 		267F5F6F28EFCEFD00249A43 /* Domain */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Domain; sourceTree = "<group>"; };
 		26F04A2C28EE7EF100A189DA /* CleanApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CleanApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26F04A2F28EE7EF100A189DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -188,6 +189,7 @@
 		26F2213528EFBBAC004737D9 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
+				2664F64828F37A8600FB3740 /* Presentation */,
 				2664F64428F328A900FB3740 /* Data */,
 				267F5F6F28EFCEFD00249A43 /* Domain */,
 			);
