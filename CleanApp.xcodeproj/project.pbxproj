@@ -7,7 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2664F64328F22B8B00FB3740 /* Networking in Frameworks */ = {isa = PBXBuildFile; productRef = 2664F64228F22B8B00FB3740 /* Networking */; };
+		2652089E28F5140B0083C8EF /* Data in Frameworks */ = {isa = PBXBuildFile; productRef = 2652089D28F5140B0083C8EF /* Data */; };
+		265208A028F5140B0083C8EF /* Domain in Frameworks */ = {isa = PBXBuildFile; productRef = 2652089F28F5140B0083C8EF /* Domain */; };
+		265208A228F5140B0083C8EF /* Presentation in Frameworks */ = {isa = PBXBuildFile; productRef = 265208A128F5140B0083C8EF /* Presentation */; };
+		26B0EF5A28F473C40099D9EA /* Networking in Frameworks */ = {isa = PBXBuildFile; productRef = 26B0EF5928F473C40099D9EA /* Networking */; };
+		26B0EF5D28F474F80099D9EA /* AppDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B0EF5C28F474F80099D9EA /* AppDIContainer.swift */; };
+		26B0EF5F28F475B40099D9EA /* TypicodeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B0EF5E28F475B40099D9EA /* TypicodeAPI.swift */; };
 		26F04A3028EE7EF100A189DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F04A2F28EE7EF100A189DA /* AppDelegate.swift */; };
 		26F04A3228EE7EF100A189DA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F04A3128EE7EF100A189DA /* SceneDelegate.swift */; };
 		26F04A3428EE7EF100A189DA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F04A3328EE7EF100A189DA /* ViewController.swift */; };
@@ -53,6 +58,8 @@
 		2664F64428F328A900FB3740 /* Data */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Data; sourceTree = "<group>"; };
 		2664F64828F37A8600FB3740 /* Presentation */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Presentation; sourceTree = "<group>"; };
 		267F5F6F28EFCEFD00249A43 /* Domain */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Domain; sourceTree = "<group>"; };
+		26B0EF5C28F474F80099D9EA /* AppDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDIContainer.swift; sourceTree = "<group>"; };
+		26B0EF5E28F475B40099D9EA /* TypicodeAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypicodeAPI.swift; sourceTree = "<group>"; };
 		26F04A2C28EE7EF100A189DA /* CleanApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CleanApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26F04A2F28EE7EF100A189DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		26F04A3128EE7EF100A189DA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -73,7 +80,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2664F64328F22B8B00FB3740 /* Networking in Frameworks */,
+				265208A228F5140B0083C8EF /* Presentation in Frameworks */,
+				265208A028F5140B0083C8EF /* Domain in Frameworks */,
+				2652089E28F5140B0083C8EF /* Data in Frameworks */,
+				26B0EF5A28F473C40099D9EA /* Networking in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,12 +104,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2652089C28F5140B0083C8EF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		26B0EF5B28F474D30099D9EA /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				26B0EF6028F476CA0099D9EA /* Networking */,
+				26B0EF5C28F474F80099D9EA /* AppDIContainer.swift */,
+			);
+			path = Dependencies;
+			sourceTree = "<group>";
+		};
+		26B0EF6028F476CA0099D9EA /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				26B0EF5E28F475B40099D9EA /* TypicodeAPI.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
 		26F04A2328EE7EF100A189DA = {
 			isa = PBXGroup;
 			children = (
 				26F2213528EFBBAC004737D9 /* Packages */,
 				26F04A2E28EE7EF100A189DA /* CleanApp */,
 				26F04A2D28EE7EF100A189DA /* Products */,
+				2652089C28F5140B0083C8EF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -145,6 +180,7 @@
 		26F04A5F28EE7F3E00A189DA /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				26B0EF5B28F474D30099D9EA /* Dependencies */,
 				26F04A6328EE806700A189DA /* Launch */,
 				26F04A6228EE7F7200A189DA /* Main */,
 			);
@@ -212,12 +248,16 @@
 			buildRules = (
 			);
 			dependencies = (
-				26EC40B728EFD22F00980322 /* PBXTargetDependency */,
 				268295F228EFBC9500DFFFD3 /* PBXTargetDependency */,
+				26B0EF5728F4733A0099D9EA /* PBXTargetDependency */,
+				26B0EF5528F4733A0099D9EA /* PBXTargetDependency */,
 			);
 			name = CleanApp;
 			packageProductDependencies = (
-				2664F64228F22B8B00FB3740 /* Networking */,
+				26B0EF5928F473C40099D9EA /* Networking */,
+				2652089D28F5140B0083C8EF /* Data */,
+				2652089F28F5140B0083C8EF /* Domain */,
+				265208A128F5140B0083C8EF /* Presentation */,
 			);
 			productName = CleanApp;
 			productReference = 26F04A2C28EE7EF100A189DA /* CleanApp.app */;
@@ -293,7 +333,7 @@
 			);
 			mainGroup = 26F04A2328EE7EF100A189DA;
 			packageReferences = (
-				2664F64128F22B8B00FB3740 /* XCRemoteSwiftPackageReference "Networking" */,
+				26B0EF5828F473C40099D9EA /* XCRemoteSwiftPackageReference "Networking" */,
 			);
 			productRefGroup = 26F04A2D28EE7EF100A189DA /* Products */;
 			projectDirPath = "";
@@ -360,8 +400,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26B0EF5D28F474F80099D9EA /* AppDIContainer.swift in Sources */,
 				26F04A3428EE7EF100A189DA /* ViewController.swift in Sources */,
 				26F04A3028EE7EF100A189DA /* AppDelegate.swift in Sources */,
+				26B0EF5F28F475B40099D9EA /* TypicodeAPI.swift in Sources */,
 				26F04A3228EE7EF100A189DA /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -390,9 +432,13 @@
 			isa = PBXTargetDependency;
 			productRef = 268295F128EFBC9500DFFFD3 /* Domain */;
 		};
-		26EC40B728EFD22F00980322 /* PBXTargetDependency */ = {
+		26B0EF5528F4733A0099D9EA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			productRef = 26EC40B628EFD22F00980322 /* Common */;
+			productRef = 26B0EF5428F4733A0099D9EA /* Presentation */;
+		};
+		26B0EF5728F4733A0099D9EA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 26B0EF5628F4733A0099D9EA /* Data */;
 		};
 		26F04A4428EE7EF200A189DA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -714,9 +760,9 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		2664F64128F22B8B00FB3740 /* XCRemoteSwiftPackageReference "Networking" */ = {
+		26B0EF5828F473C40099D9EA /* XCRemoteSwiftPackageReference "Networking" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/oscardemoya/Networking";
+			repositoryURL = "https://github.com/oscardemoya/Networking.git";
 			requirement = {
 				branch = main;
 				kind = branch;
@@ -725,18 +771,34 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		2664F64228F22B8B00FB3740 /* Networking */ = {
+		2652089D28F5140B0083C8EF /* Data */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2664F64128F22B8B00FB3740 /* XCRemoteSwiftPackageReference "Networking" */;
-			productName = Networking;
+			productName = Data;
+		};
+		2652089F28F5140B0083C8EF /* Domain */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Domain;
+		};
+		265208A128F5140B0083C8EF /* Presentation */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Presentation;
 		};
 		268295F128EFBC9500DFFFD3 /* Domain */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Domain;
 		};
-		26EC40B628EFD22F00980322 /* Common */ = {
+		26B0EF5428F4733A0099D9EA /* Presentation */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = Common;
+			productName = Presentation;
+		};
+		26B0EF5628F4733A0099D9EA /* Data */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Data;
+		};
+		26B0EF5928F473C40099D9EA /* Networking */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 26B0EF5828F473C40099D9EA /* XCRemoteSwiftPackageReference "Networking" */;
+			productName = Networking;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

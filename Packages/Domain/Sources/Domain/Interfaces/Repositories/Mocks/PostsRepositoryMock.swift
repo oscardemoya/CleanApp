@@ -11,20 +11,20 @@ enum PostsRepositoryMockError: Error {
     case failedFetching
 }
 
-final class PostsRepositorySuccessMock: PostsRepository {
-    func fetchPosts(from page: PaginationParameters?) async throws -> [Post] {
+final class PostsRepositorySuccessMock: PostsRepositoryProtocol {
+    func fetchPosts(from page: Page) async throws -> [Post] {
         [Post.stub()]
     }
 }
 
-final class PostsRepositoryFailureMock: PostsRepository {
-    func fetchPosts(from page: PaginationParameters?) async throws -> [Post] {
+final class PostsRepositoryFailureMock: PostsRepositoryProtocol {
+    func fetchPosts(from page: Page) async throws -> [Post] {
         throw PostsRepositoryMockError.failedFetching
     }
 }
 
-final class PostsRepositoryEmptyMock: PostsRepository {
-    func fetchPosts(from page: PaginationParameters?) async throws -> [Post] {
+final class PostsRepositoryEmptyMock: PostsRepositoryProtocol {
+    func fetchPosts(from page: Page) async throws -> [Post] {
         []
     }
 }

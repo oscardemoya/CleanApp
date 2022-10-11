@@ -5,18 +5,20 @@ import PackageDescription
 
 let package = Package(
     name: "Presentation",
+    platforms: [.iOS(.v16)],
     products: [
         .library(
             name: "Presentation",
             targets: ["Presentation"])
     ],
     dependencies: [
-        .package(path: "../Domain")
+        .package(path: "../Domain"),
+        .package(path: "../Data")
     ],
     targets: [
         .target(
             name: "Presentation",
-            dependencies: ["Domain"]),
+            dependencies: ["Domain", "Data"]),
         .testTarget(
             name: "PresentationTests",
             dependencies: ["Presentation"])

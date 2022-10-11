@@ -5,20 +5,29 @@ import PackageDescription
 
 let package = Package(
     name: "Data",
+    platforms: [.iOS(.v16)],
     products: [
         .library(
             name: "Data",
-            targets: ["Data"])
+            targets: ["Data"]
+        )
     ],
     dependencies: [
-        .package(path: "../Domain")
+        .package(path: "../Domain"),
+        .package(url: "https://github.com/oscardemoya/Networking.git", branch: "main")
     ],
     targets: [
         .target(
             name: "Data",
-            dependencies: ["Domain"]),
+            dependencies: [
+                "Domain",
+                .product(name: "Networking",
+                         package: "Networking")
+            ]
+        ),
         .testTarget(
             name: "DataTests",
-            dependencies: ["Data"])
+            dependencies: ["Data"]
+        )
     ]
 )

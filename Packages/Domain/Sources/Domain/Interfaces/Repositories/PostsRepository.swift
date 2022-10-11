@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol PostsRepository {
-    func fetchPosts(from page: PaginationParameters?) async throws -> [Post]
+public protocol PostsRepositoryProtocol {
+    func fetchPosts(from page: Page) async throws -> [Post]
 }

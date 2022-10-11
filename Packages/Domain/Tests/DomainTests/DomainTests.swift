@@ -2,7 +2,7 @@ import XCTest
 @testable import Domain
 
 final class DomainTests: XCTestCase {
-    struct PaginationParametersMock: PaginationParameters {
+    struct PaginationParametersMock: Page {
         var offset: Int
         var limit: Int
     }

@@ -7,9 +7,18 @@
 
 import UIKit
 
+let appDelegate: AppDelegate = {
+    guard let delegate = UIApplication.shared.delegate as? AppDelegate else {
+        preconditionFailure("Missing AppDelegate")
+    }
+    return delegate
+}()
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    let appDIContainer = AppDIContainer()
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions
                      launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         return true

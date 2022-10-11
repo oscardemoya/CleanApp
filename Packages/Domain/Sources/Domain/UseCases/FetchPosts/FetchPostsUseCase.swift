@@ -13,14 +13,14 @@ protocol FetchPostsUseCaseProtocol {
     func execute(requestValue: RequestValue) async throws -> ResponseValue
 }
 
-final class FetchPostsUseCase: FetchPostsUseCaseProtocol {
-    var repository: PostsRepository
+public final class FetchPostsUseCase: FetchPostsUseCaseProtocol {
+    var repository: PostsRepositoryProtocol
     
-    init(repository: PostsRepository) {
+    public init(repository: PostsRepositoryProtocol) {
         self.repository = repository
     }
         
-    func execute(requestValue: RequestValue) async throws -> ResponseValue {
+    public func execute(requestValue: RequestValue) async throws -> ResponseValue {
         let posts = try await repository.fetchPosts(from: requestValue.page)
         return ResponseValue(posts: posts)
     }

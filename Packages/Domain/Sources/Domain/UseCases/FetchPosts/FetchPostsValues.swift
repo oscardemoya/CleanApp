@@ -7,12 +7,20 @@
 
 import Foundation
 
-extension FetchPostsUseCase {
+public extension FetchPostsUseCase {
     struct RequestValue {
-        var page: PaginationParameters
+        public var page: Page
+        
+        public init(page: Page) {
+            self.page = page
+        }
     }
     
     struct ResponseValue: Codable {
-        var posts: [Post]
+        public var posts: [Post]
+        
+        public init(posts: [Post]) {
+            self.posts = posts
+        }
     }
 }

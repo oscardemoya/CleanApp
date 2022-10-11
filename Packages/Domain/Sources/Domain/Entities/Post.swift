@@ -7,10 +7,10 @@
 
 import Foundation
 
-struct Post: Codable, Identifiable {
-    typealias Identifier = Int
-    var id: Identifier
-    var userId: Int
-    var title: String
-    var body: String
+public struct Post: Codable, Identifiable {
+    public typealias Identifier = Int
+    public var id: Identifier
+    public var userId: Int
+    public var title: String
+    public var body: String
 }

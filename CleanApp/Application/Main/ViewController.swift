@@ -7,28 +7,22 @@
 
 import UIKit
 import Networking
+import Domain
+import Data
+import Presentation
 
 class ViewController: UIViewController {
 
-    let client = APIClient(baseURL: "https://jsonplaceholder.typicode.com")
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        Task {
-            do {
-                let response: Response<[Post]> = try await client.get("/posts")
-                print(response.value)
-            } catch {
-                print(error)
-            }
-        }
+        print(Presentation.bundle.bundleIdentifier ?? "")
     }
-
-}
-
-struct Post: Decodable {
-    var id: Int
-    var userId: Int
-    var title: String
-    var body: String
+    
+    @IBSegueAction func showPostsList(_ coder: NSCoder) -> PostsListViewController? {
+        let apiClient = appDelegate.appDIContainer.apiClient
+        let repository = PostsRepository(apiClient: apiClient)
+        let useCase = FetchPostsUseCase(repository: repository)
+        let viewModel = PostsListViewModel(postsListUseCase: useCase)
+        return PostsListViewController(viewModel: viewModel, coder: coder)
+    }
 }
