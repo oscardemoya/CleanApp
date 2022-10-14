@@ -10,15 +10,19 @@ import Domain
 import Networking
 
 public final class PostsRepository {
-    private let apiClient: APIClient
+    private let dataSource: PostsDataSource
     
-    public init(apiClient: APIClient) {
-        self.apiClient = apiClient
+    public init(dataSource: PostsDataSource) {
+        self.dataSource = dataSource
     }
 }
     
 extension PostsRepository: PostsRepositoryProtocol {
-    public func fetchPosts(from page: Page) async throws -> [Post] {
-        return try await apiClient.get("/posts").value
+    public func fetchPosts(from page: any Page) async throws -> [Post] {
+        try await dataSource.fetchPosts(page: page)
+    }
+    
+    public func fetchPost(id: any Hashable) async throws -> Post {
+        try await dataSource.fetchPost(id: id)
     }
 }

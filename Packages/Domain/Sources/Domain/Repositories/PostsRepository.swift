@@ -8,5 +8,6 @@
 import Foundation
 
 public protocol PostsRepositoryProtocol {
-    func fetchPosts(from page: Page) async throws -> [Post]
+    func fetchPosts(from page: any Page) async throws -> [Post]
+    func fetchPost(id: any Hashable) async throws -> Post
 }

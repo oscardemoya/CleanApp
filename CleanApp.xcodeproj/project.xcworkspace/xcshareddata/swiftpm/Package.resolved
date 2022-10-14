@@ -3,10 +3,10 @@
     {
       "identity" : "networking",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/oscardemoya/Networking",
+      "location" : "https://github.com/oscardemoya/Networking.git",
       "state" : {
         "branch" : "main",
-        "revision" : "d8a7084223c3b5a1225f4052c1aaf213da31cef5"
+        "revision" : "79fa856ecfe7f0add98c02685778b28e1631d35b"
       }
     }
   ],

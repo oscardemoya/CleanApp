@@ -9,9 +9,9 @@ import Foundation
 
 public extension FetchPostsUseCase {
     struct RequestValue {
-        public var page: Page
+        public var page: any Page
         
-        public init(page: Page) {
+        public init(page: any Page) {
             self.page = page
         }
     }

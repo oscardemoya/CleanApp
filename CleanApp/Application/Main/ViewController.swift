@@ -18,9 +18,10 @@ class ViewController: UIViewController {
         print(Presentation.bundle.bundleIdentifier ?? "")
     }
     
-    @IBSegueAction func showPostsList(_ coder: NSCoder) -> PostsListViewController? {
+    @IBSegueAction func showPostsList(_ coder: NSCoder) -> UIViewController? {
         let apiClient = appDelegate.appDIContainer.apiClient
-        let repository = PostsRepository(apiClient: apiClient)
+        let dataSource = PostsAPIDataSource(apiClient: apiClient)
+        let repository = PostsRepository(dataSource: dataSource)
         let useCase = FetchPostsUseCase(repository: repository)
         let viewModel = PostsListViewModel(postsListUseCase: useCase)
         return PostsListViewController(viewModel: viewModel, coder: coder)
