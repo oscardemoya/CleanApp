@@ -15,7 +15,6 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(Presentation.bundle.bundleIdentifier ?? "")
     }
     
     @IBSegueAction func showPostsList(_ coder: NSCoder) -> UIViewController? {
@@ -26,4 +25,5 @@ class ViewController: UIViewController {
         let viewModel = PostsListViewModel(postsListUseCase: useCase)
         return PostsListViewController(viewModel: viewModel, coder: coder)
     }
+    
 }

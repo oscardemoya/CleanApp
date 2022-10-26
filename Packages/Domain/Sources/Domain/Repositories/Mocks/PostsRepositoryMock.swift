@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum PostsRepositoryMockError: Error {
+public enum PostsRepositoryMockError: Error {
     case failedFetching
     case notFound
 }

@@ -7,17 +7,20 @@
 
 import UIKit
 import Domain
+import Combine
 
 public class PostDetailsViewController: UIViewController {
+    var cancellable: AnyCancellable?
+    
     @IBOutlet var idLabel: UILabel!
     @IBOutlet var userIdLabel: UILabel!
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var bodyLabel: UILabel!
     
-    var post: Bindable<Post>
+    @Published var post: Post
     
     public init?(post: Post, coder: NSCoder) {
-        self.post = Bindable(post)
+        self.post = post
         super.init(coder: coder)
     }
     
@@ -27,14 +30,15 @@ public class PostDetailsViewController: UIViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        setupBindings()
+        configureSubscribers()
     }
     
-    func setupBindings() {
-        post.bind(\.id, to: idLabel, \.text) { "\($0)" }
-        post.bind(\.userId, to: userIdLabel, \.text) { "\($0)" }
-        post.bind(\.title, to: titleLabel, \.text)
-        post.bind(\.body, to: bodyLabel, \.text)
+    func configureSubscribers() {
+        cancellable = $post.sink { [weak self] value in
+            guard let self else { return }
+            self.titleLabel.text = value.title
+            self.bodyLabel.text = value.body
+        }
     }
     
 }
