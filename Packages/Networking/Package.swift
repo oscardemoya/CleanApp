@@ -13,15 +13,9 @@ let package = Package(
             targets: ["Networking"]
         )
     ],
-    dependencies: [
-        .package(path: "../Toolkit"),
-    ],
     targets: [
         .target(
-            name: "Networking",
-            dependencies: [
-                "Toolkit",
-            ]
+            name: "Networking"
         ),
         .testTarget(
             name: "NetworkingTests",
