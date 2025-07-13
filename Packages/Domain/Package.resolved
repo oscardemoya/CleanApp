@@ -1,0 +1,24 @@
+{
+  "originHash" : "9479f37f7050355cdd033b8a38c81dab876c06f6be764c74773af38ffe891900",
+  "pins" : [
+    {
+      "identity" : "ios-toolkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/koombea/ios-toolkit",
+      "state" : {
+        "revision" : "1d86be59cfd8accdab53b066a3c83be393bc6d4c",
+        "version" : "0.1.0"
+      }
+    },
+    {
+      "identity" : "swift-syntax",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/swiftlang/swift-syntax.git",
+      "state" : {
+        "revision" : "0687f71944021d616d34d922343dcef086855920",
+        "version" : "600.0.1"
+      }
+    }
+  ],
+  "version" : 3
+}

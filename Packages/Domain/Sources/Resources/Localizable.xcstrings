@@ -1,0 +1,98 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "Anonymous" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anónimo"
+          }
+        }
+      }
+    },
+    "Authentication was canceled." : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se canceló la autenticación."
+          }
+        }
+      }
+    },
+    "Invalid configuration." : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configuración no válida."
+          }
+        }
+      }
+    },
+    "Invalid credentials." : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Credenciales no válidas."
+          }
+        }
+      }
+    },
+    "Invalid token." : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Token no válido."
+          }
+        }
+      }
+    },
+    "Invalid URL" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL no válida"
+          }
+        }
+      }
+    },
+    "Invalid user." : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usuario no válido."
+          }
+        }
+      }
+    },
+    "This too shall pass." : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esto también pasará."
+          }
+        }
+      }
+    },
+    "User is not authenticated." : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El usuario no está autenticado."
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

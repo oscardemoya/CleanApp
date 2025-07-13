@@ -1,14 +1,15 @@
 {
+  "originHash" : "7f8fad4f2ae88860ceece4361c62f64314188df97e86030868b18e4084b4ea2e",
   "pins" : [
     {
-      "identity" : "networking",
+      "identity" : "swift-syntax",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/oscardemoya/Networking.git",
+      "location" : "https://github.com/swiftlang/swift-syntax.git",
       "state" : {
-        "branch" : "main",
-        "revision" : "79fa856ecfe7f0add98c02685778b28e1631d35b"
+        "revision" : "0687f71944021d616d34d922343dcef086855920",
+        "version" : "600.0.1"
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }

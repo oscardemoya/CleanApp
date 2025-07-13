@@ -1,11 +1,12 @@
-// swift-tools-version: 5.7
+// swift-tools-version: 5.10
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
 
 let package = Package(
     name: "Data",
-    platforms: [.iOS(.v16)],
+    defaultLocalization: "en",
+    platforms: [.iOS(.v17), .macOS(.v14)],
     products: [
         .library(
             name: "Data",
@@ -13,16 +14,23 @@ let package = Package(
         )
     ],
     dependencies: [
+        .package(path: "../Toolkit"),
+        .package(path: "../CleanArchitecture"),
         .package(path: "../Domain"),
-        .package(url: "https://github.com/oscardemoya/Networking.git", branch: "main")
+        .package(path: "../Networking")
     ],
     targets: [
         .target(
             name: "Data",
             dependencies: [
+                "Toolkit",
+                "CleanArchitecture",
                 "Domain",
-                .product(name: "Networking",
-                         package: "Networking")
+                "Networking"
+            ],
+            path: "Sources",
+            resources: [
+                .process("Resources")
             ]
         ),
         .testTarget(
