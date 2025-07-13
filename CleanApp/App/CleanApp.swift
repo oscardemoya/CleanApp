@@ -12,14 +12,13 @@ import Domain
 
 @main
 struct CleanApp: App {
-    init() {
-        logger.info("Environment: \(AppEnvironment.current.rawValue)")
-    }
-    
     var body: some Scene {
         WindowGroup {
             LoginView()
                 .environment(\.services, ServiceContainer(environment: .current))
+                .onAppear {
+                    logger.info("Environment: \(AppEnvironment.current.rawValue)")
+                }
         }
     }
 }
