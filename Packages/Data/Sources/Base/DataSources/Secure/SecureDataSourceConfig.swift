@@ -8,7 +8,7 @@
 import Toolkit
 import Domain
 
-public protocol SecureDataSourceConfig {
+public protocol SecureDataSourceConfig: Sendable {
     var keychain: AppKeychainManager { get }
 }
 

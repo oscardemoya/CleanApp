@@ -7,6 +7,6 @@
 
 import Foundation
 
-public protocol TokenRepository {
+public protocol TokenRepository: Sendable {
     func save(token: AuthToken) throws
 }

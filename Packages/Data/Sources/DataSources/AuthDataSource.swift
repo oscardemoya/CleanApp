@@ -7,7 +7,7 @@
 
 import Networking
 
-protocol AuthDataSource {
+protocol AuthDataSource: Sendable {
     func login(credentials: any Codable) async throws -> AuthTokenData
 }
 

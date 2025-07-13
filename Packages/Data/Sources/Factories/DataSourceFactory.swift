@@ -10,6 +10,6 @@ import Networking
 
 @Injectable<RemoteDataSourceConfig & SecureDataSourceConfig>
 public struct DataSourceFactory {
-    #MakeDataSource<AuthDataSource, RemoteDataSourceConfig>()
-    #MakeDataSource<TokenDataSource, SecureDataSourceConfig>()
+    #MakeDataSource<any AuthDataSource, RemoteDataSourceConfig>()
+    #MakeDataSource<any TokenDataSource, SecureDataSourceConfig>()
 }

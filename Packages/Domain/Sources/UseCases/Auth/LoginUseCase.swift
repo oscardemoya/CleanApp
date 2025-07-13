@@ -9,7 +9,7 @@ import Foundation
 import CleanArchitecture
 
 @Injectable<AuthRepository & TokenRepository>
-public struct LoginUseCase {
+public struct LoginUseCase: Sendable {
     public func execute(credentials: LoginCredentials) async throws -> AuthToken {
         let token = try await authRepository.login(credentials: credentials)
         try tokenRepository.save(token: token)

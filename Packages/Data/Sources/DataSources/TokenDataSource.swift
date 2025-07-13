@@ -7,7 +7,7 @@
 
 import Toolkit
 
-protocol TokenDataSource {
+protocol TokenDataSource: Sendable {
     func save(token: any Codable) throws
 }
 

@@ -7,6 +7,6 @@
 
 import Foundation
 
-public protocol AuthRepository {
+public protocol AuthRepository: Sendable {
     func login(credentials: LoginCredentials) async throws -> AuthToken
 }

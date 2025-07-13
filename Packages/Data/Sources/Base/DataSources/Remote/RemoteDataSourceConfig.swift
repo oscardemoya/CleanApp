@@ -8,7 +8,7 @@
 import Networking
 import Domain
 
-public protocol RemoteDataSourceConfig {
+public protocol RemoteDataSourceConfig: Sendable {
     var apiClient: APIClient { get }
 }
 
