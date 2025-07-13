@@ -6,18 +6,14 @@
 //
 
 import Networking
+import CleanArchitecture
 
 protocol AuthDataSource: Sendable {
     func login(credentials: any Codable) async throws -> AuthTokenData
 }
 
+@Configurable<RemoteDataSourceConfig>
 final class DefaultAuthDataSource: AuthDataSource, RemoteDataSource {
-    let configuration: RemoteDataSourceConfig
-    
-    required init(configuration: RemoteDataSourceConfig) {
-        self.configuration = configuration
-    }
-    
     func login(credentials: any Codable) async throws -> AuthTokenData {
         try await apiClient.post("/auth/login", body: credentials.jsonHTTPBody).value
     }

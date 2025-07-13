@@ -6,18 +6,14 @@
 //
 
 import Toolkit
+import CleanArchitecture
 
 protocol TokenDataSource: Sendable {
     func save(token: any Codable) throws
 }
 
+@Configurable<SecureDataSourceConfig>
 final class DefaultTokenDataSource: TokenDataSource, SecureStorageDataSource {
-    let configuration: SecureDataSourceConfig
-    
-    required init(configuration: SecureDataSourceConfig) {
-        self.configuration = configuration
-    }
-    
     func save(token: any Codable) throws {
         try keychain.save(token, for: .authToken)
     }
