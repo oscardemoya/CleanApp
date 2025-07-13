@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Toolkit
 
 protocol Client {
     func send<T: Decodable>(request: Request<Response<T>>) async throws -> Response<T>

@@ -6,7 +6,6 @@
 //
 
 import OSLog
-import Toolkit
 
 let logger = {
     Config.isLoggingEnabled ? Logger(subsystem: Bundle.identifier, category: "networking") : Logger(.disabled)
