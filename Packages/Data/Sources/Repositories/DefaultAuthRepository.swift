@@ -11,6 +11,6 @@ import Domain
 @Injectable<AuthDataSource>
 final class DefaultAuthRepository: AuthRepository, Sendable {
     func login(credentials: LoginCredentials) async throws -> AuthToken {
-        try await authDataSource.login(credentials: credentials.asDataModel).asDomainEntity
+        try await authDataSource.login(credentials: LoginCredentialsData(entity: credentials)).asDomainEntity
     }
 }

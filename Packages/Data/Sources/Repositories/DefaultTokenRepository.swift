@@ -11,6 +11,6 @@ import Domain
 @Injectable<TokenDataSource>
 final class DefaultTokenRepository: TokenRepository, Sendable {
     func save(token: AuthToken) throws {
-        try tokenDataSource.save(token: token.asDataModel)
+        try tokenDataSource.save(token: AuthTokenData(entity: token))
     }
 }
