@@ -15,6 +15,6 @@ protocol AuthDataSource: Sendable {
 @Configurable<RemoteDataSourceConfig>
 final class DefaultAuthDataSource: AuthDataSource, RemoteDataSource {
     func login(credentials: any Codable) async throws -> AuthTokenData {
-        try await apiClient.post("/auth/login", body: credentials.jsonHTTPBody).value
+        try await apiClient.post("/auth/login", body: credentials.jsonBody).value
     }
 }

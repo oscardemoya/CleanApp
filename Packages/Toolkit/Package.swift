@@ -11,7 +11,7 @@ let package = Package(
         .library(
             name: "Toolkit",
             targets: ["Toolkit"]
-        ),
+        )
     ],
     targets: [
         .target(

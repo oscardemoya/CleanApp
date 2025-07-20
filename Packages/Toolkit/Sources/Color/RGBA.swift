@@ -15,9 +15,14 @@ public struct RGBA: Codable, RawRepresentable {
     
     public var rawValue: String {
         if alpha != 1.0 {
-            "H\(Int(round(red * 255))) S\(Int(round(green * 255))) B\(Int(round(blue * 255))) A\(Int(round(alpha * 255)))"
+            "R\(Int(round(red * 255))) " +
+            "G\(Int(round(green * 255))) " +
+            "B\(Int(round(blue * 255))) " +
+            "A\(Int(round(alpha * 255)))"
         } else {
-            "H\(Int(round(red * 255))) S\(Int(round(green * 255))) B\(Int(round(blue * 255)))"
+            "R\(Int(round(red * 255))) " +
+            "G\(Int(round(green * 255))) " +
+            "B\(Int(round(blue * 255)))"
         }
     }
 

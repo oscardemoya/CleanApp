@@ -15,9 +15,16 @@ public struct HSBA: Codable, RawRepresentable {
     
     public var rawValue: String {
         if alpha != 1.0 {
-            "H\(Int(round(hue * 255))) S\(Int(round(saturation * 255))) B\(Int(round(brightness * 255))) A\(Int(round(alpha * 255)))"
+            let hueString = "H\(Int(round(hue * 255)))"
+            let saturationString = "S\(Int(round(saturation * 255)))"
+            let brightnessString = "B\(Int(round(brightness * 255)))"
+            let alphaString = "A\(Int(round(alpha * 255)))"
+            return "\(hueString) \(saturationString) \(brightnessString) \(alphaString)"
         } else {
-            "H\(Int(round(hue * 255))) S\(Int(round(saturation * 255))) B\(Int(round(brightness * 255)))"
+            let hueString = "H\(Int(round(hue * 255)))"
+            let saturationString = "S\(Int(round(saturation * 255)))"
+            let brightnessString = "B\(Int(round(brightness * 255)))"
+            return "\(hueString) \(saturationString) \(brightnessString)"
         }
     }
 

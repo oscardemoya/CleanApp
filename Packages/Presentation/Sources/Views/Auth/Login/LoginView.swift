@@ -7,61 +7,33 @@
 
 import SwiftUI
 import Domain
+import DesignSystem
 
 public struct LoginView: View {
-    @Environment(\.services) private var services
+    @Environment(\.services) var services
     
     public init() {}
     
-    @State private var username: String = ""
-    @State private var password: String = ""
-    @State private var isLoggingIn: Bool = false
-    @State private var loginError: String?
+    @State var username: String = ""
+    @State var password: String = ""
+    @State var isLoggingIn: Bool = false
+    @State var loginError: String?
     
     public var body: some View {
         NavigationStack {
-            VStack(spacing: 20) {
+            VStack(spacing: .small) {
                 TextField("Username", text: $username)
                     .keyboardType(.numberPad)
-                    .textFieldStyle(.roundedBorder)
                 SecureField("Password", text: $password)
-                    .textFieldStyle(.roundedBorder)
-                if let error = loginError {
-                    Text(error)
-                        .foregroundColor(.red)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                }
-                Button(action: login) {
-                    if isLoggingIn {
-                        ProgressView()
-                    } else {
-                        Text("Log In")
-                            .frame(maxWidth: .infinity)
-                    }
-                }
-                .disabled(isLoggingIn || username.isEmpty || password.isEmpty)
-                .buttonStyle(.borderedProminent)
-                .controlSize(.large)
+                    .textFieldError(loginError)
+                Button("Login", action: login)
+                    .loadingButton(isLoggingIn)
+                    .disabled(username.isEmpty || password.isEmpty)
+                    .frame(maxWidth: .infinity)
                 Spacer()
             }
-            .padding()
+            .padding(.medium)
             .navigationTitle("Login")
-        }
-    }
-    
-    private func login() {
-        defer { isLoggingIn = false }
-        isLoggingIn = true
-        loginError = nil
-        Task {
-            do {
-                guard let services else { return }
-                let credentials = LoginCredentials(username: username, password: password)
-                let user = try await services.authService.login(credentials: credentials)
-                logger.debug("Username: \(user.username)")
-            } catch {
-                loginError = error.localizedDescription
-            }
         }
     }
 }

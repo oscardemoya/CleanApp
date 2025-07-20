@@ -187,6 +187,7 @@ public macro ServiceContainer() = #externalMacro(
 /// A macro that produces conversion methods for a data model to its corresponding domain entity.
 /// Adds `asDomainEntity` computed property a default init and an `init(entity:)` initializer. For example:
 ///
+///     @ModelConvertible
 ///     struct LoginCredentialsData {
 ///         @Convertible(key: "username")
 ///         let idNumber: String
@@ -235,6 +236,7 @@ public macro Convertible(key: String) = #externalMacro(
 
 /// A macro that produces a default initializer for Domain models (Entities). For example:
 ///
+///     @Entity
 ///     struct LoginCredentials {
 ///         let email: String
 ///         let password: String

@@ -11,12 +11,12 @@ let package = Package(
         .library(
             name: "Presentation",
             targets: ["Presentation"]
-        ),
+        )
     ],
     dependencies: [
         .package(path: "../Domain"),
         .package(path: "../UIComponents"),
-        .package(path: "../DesignSystem"),
+        .package(path: "../DesignSystem")
     ],
     targets: [
         .target(
@@ -30,6 +30,6 @@ let package = Package(
         .testTarget(
             name: "PresentationTests",
             dependencies: ["Presentation"]
-        ),
+        )
     ]
 )

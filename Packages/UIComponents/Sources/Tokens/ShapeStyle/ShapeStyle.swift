@@ -18,11 +18,16 @@ public extension ShapeStyle where Self == Color {
     // MARK: Basic
     static var baseLight: Color { Config.shared.color.baseLight }
     static var baseDark: Color { Config.shared.color.baseDark }
-    static var baseWhite: Color { Config.shared.color.baseWhite }
-    static var baseLightGray: Color { Config.shared.color.baseLightGray }
+    
+    // MARK: Gray
     static var baseGray: Color { Config.shared.color.baseGray }
-    static var baseDarkGray: Color { Config.shared.color.baseDarkGray }
-    static var baseBlack: Color { Config.shared.color.baseBlack }
+    static var baseGray2: Color { Config.shared.color.baseGray2 }
+    static var baseGray3: Color { Config.shared.color.baseGray3 }
+    static var baseGray4: Color { Config.shared.color.baseGray4 }
+    static var baseGray5: Color { Config.shared.color.baseGray5 }
+    static var baseGray6: Color { Config.shared.color.baseGray6 }
+    
+    // MARK: - Elements
     
     // MARK: Background
     static var primaryBackground: Color { Config.shared.color.primaryBackground }

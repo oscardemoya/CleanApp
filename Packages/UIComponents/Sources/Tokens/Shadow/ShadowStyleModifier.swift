@@ -20,7 +20,7 @@ private struct ShadowStyleModifier: ViewModifier {
 }
 
 public extension View {
-    func shadowStyle(_ style: ShadowStyle, color: Color = Color.baseBlack) -> some View {
+    func shadowStyle(_ style: ShadowStyle, color: Color = Color.baseDark) -> some View {
         modifier(
             ShadowStyleModifier(
                 shadowStyle: style,

@@ -7,9 +7,6 @@
 
 import SwiftUI
 
-import SwiftUI
-
-// TODO: Move values to a Config file
 public enum Sizing: String, Identifiable, Hashable, CaseIterable {
     case compact
     case regular
@@ -23,13 +20,13 @@ struct SizingValues {
     var regular: CGFloat
     var spacious: CGFloat
     
-    static var compactMultiplier: CGFloat = 0.5
-    static var spaciousMultiplier: CGFloat = 2
+    static var compactMultiplier: CGFloat { Config.shared.scaling.compact }
+    static var spaciousMultiplier: CGFloat { Config.shared.scaling.spacious }
     
-    init(_ regular: CGFloat) {
-        self.compact = regular * SizingValues.compactMultiplier
-        self.regular = regular
-        self.spacious = regular * SizingValues.spaciousMultiplier
+    init(_ baseValue: CGFloat) {
+        self.compact = baseValue * Self.compactMultiplier
+        self.regular = baseValue
+        self.spacious = baseValue * Self.spaciousMultiplier
     }
     
     func value(for sizing: Sizing) -> CGFloat {

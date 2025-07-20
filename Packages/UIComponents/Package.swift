@@ -14,7 +14,7 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(path: "../Toolkit"),
+        .package(path: "../Toolkit")
     ],
     targets: [
         .target(
@@ -29,6 +29,6 @@ let package = Package(
         ),
         .testTarget(
             name: "UIComponentsTests"
-        ),
+        )
     ]
 )

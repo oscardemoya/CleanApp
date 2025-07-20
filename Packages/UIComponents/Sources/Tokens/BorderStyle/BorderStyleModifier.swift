@@ -36,7 +36,7 @@ private struct BorderStyleModifier: ViewModifier {
                 .cornerStyle(cornerStyle)
                 .overlay(
                     AnyView(cornerStyle
-                        .shapeStyle(borderWidth: borderWidth.value, borderColor: borderColor)
+                        .shapeStyle(borderWidth: borderWidth.rawValue, borderColor: borderColor)
                     )
                 )
         }

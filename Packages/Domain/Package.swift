@@ -15,7 +15,7 @@ let package = Package(
     ],
     dependencies: [
         .package(path: "../Toolkit"),
-        .package(path: "../CleanArchitecture"),
+        .package(path: "../CleanArchitecture")
     ],
     targets: [
         .target(

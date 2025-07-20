@@ -18,6 +18,6 @@ public enum BorderStyle: Identifiable, Hashable {
         .stroke(.regular),
         .stroke(.medium),
         .stroke(.large),
-        .stroke(.extraLarge),
+        .stroke(.extraLarge)
     ]
 }

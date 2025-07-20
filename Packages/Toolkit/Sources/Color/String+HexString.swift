@@ -9,6 +9,7 @@ import SwiftUI
 
 public extension String {
     var firstHexColor: Color? {
+        // swiftlint:disable:next opening_brace
         let bodyRegex = #/(?<hexString>[a-f0-9]{6})/#.ignoresCase().dotMatchesNewlines()
         return matches(of: bodyRegex).compactMap { match -> Color? in
             let hexString = String(match.output.hexString)

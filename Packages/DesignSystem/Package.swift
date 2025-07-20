@@ -11,11 +11,11 @@ let package = Package(
         .library(
             name: "DesignSystem",
             targets: ["DesignSystem"]
-        ),
+        )
     ],
     dependencies: [
         .package(path: "../Toolkit"),
-        .package(path: "../UIComponents"),
+        .package(path: "../UIComponents")
     ],
     targets: [
         .target(
@@ -28,6 +28,6 @@ let package = Package(
         .testTarget(
             name: "DesignSystemTests",
             dependencies: ["DesignSystem"]
-        ),
+        )
     ]
 )

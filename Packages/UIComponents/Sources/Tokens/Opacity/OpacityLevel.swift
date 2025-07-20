@@ -7,16 +7,15 @@
 
 import SwiftUI
 
-// TODO: Move values to a Config file
 public enum OpacityLevel: CGFloat, Identifiable, Hashable, CaseIterable {
-    case transparent = 0
-    case lighter = 0.2
-    case light = 0.4
-    case intense = 0.6
-    case intenser = 0.8
-    case semiOpaque = 0.9
-    case opaque = 1
+    case transparent
+    case lighter
+    case light
+    case intense
+    case intenser
+    case semiOpaque
+    case opaque
     
     public var id: Self { self }
-    public var value: CGFloat { rawValue }
+    public var value: CGFloat { Config.shared.opacity.value(for: self) }
 }

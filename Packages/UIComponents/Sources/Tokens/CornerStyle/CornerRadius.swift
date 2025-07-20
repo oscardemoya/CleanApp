@@ -7,11 +7,13 @@
 
 import Foundation
 
-// TODO: Move values to a Config file
 public enum CornerRadius: CGFloat {
-    case nano = 4
-    case extraSmall = 8
-    case small = 16
-    case medium = 24
-    case large = 40
+    case nano
+    case extraSmall
+    case small
+    case medium
+    case large
+    case extraLarge
+    
+    public var rawValue: CGFloat { Config.shared.cornerRadius.value(for: self) }
 }

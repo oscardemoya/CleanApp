@@ -12,7 +12,7 @@ public protocol SecureDataSourceConfig: Sendable {
     var keychain: AppKeychainManager { get }
 }
 
-public struct DefaultSecureDataSourceConfig: SecureDataSourceConfig {
+public struct DefaultSecureDataSourceConfig: SecureDataSourceConfig, @unchecked Sendable {
     public let keychain: AppKeychainManager
     
     public init(keychain: AppKeychainManager) {

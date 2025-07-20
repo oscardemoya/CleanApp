@@ -38,7 +38,7 @@ public extension Hierarchy {
     
     var inputBackgroundColor: Color {
         switch self {
-        case .primary: .tertiaryBackground
+        case .primary: .secondaryBackground
         case .secondary: .tertiaryBackground
         }
     }

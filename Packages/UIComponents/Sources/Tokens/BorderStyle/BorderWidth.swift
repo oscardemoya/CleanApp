@@ -7,18 +7,12 @@
 
 import UIKit
 
-// TODO: Move values to a Config file
 public enum BorderWidth: CGFloat {
     case quark
-    case regular = 1
-    case medium = 2
-    case large = 4
-    case extraLarge = 8
+    case regular
+    case medium
+    case large
+    case extraLarge
     
-    var value: CGFloat {
-        switch self {
-        case .quark: return 1 / UIScreen.main.scale
-        default: return rawValue
-        }
-    }
+    public var rawValue: CGFloat { Config.shared.borderWidth.value(for: self) }
 }

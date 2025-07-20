@@ -8,9 +8,9 @@
 import SwiftUI
 import Toolkit
 
+public typealias TextStyleConfig = (fontWeight: Font.Weight, fontSize: CGFloat)
+
 public enum TextStyle: String, Identifiable, Hashable, CaseIterable {
-    public typealias Params = (fontWeight: Font.Weight, fontSize: CGFloat)
-    
     case display
     case header
     case title1
@@ -53,21 +53,10 @@ public enum TextStyle: String, Identifiable, Hashable, CaseIterable {
     public var size: CGFloat { Config.shared.font.size(for: self) }
     public var design: Font.Design { Config.shared.font.design }
     public var weight: Font.Weight { Config.shared.font.weight(for: self) }
-
-    // TODO: Move values to a Config file
-    public var alias: String {
-        switch self {
-        case .title1: return "Title 1"
-        case .title2: return "Title 2"
-        default: return rawValue.capitalized
-        }
-    }
+        
+    var textStyle: Font.TextStyle { Self.fontStyles[self] ?? .body }
     
     public init(_ textStyle: Font.TextStyle) {
         self = Self.fontStyles.first { $0.value == textStyle }?.key ?? .body
     }
-    
-    internal var textStyle: Font.TextStyle { Self.fontStyles[self] ?? .body }
-    
-    // TODO: Add transformation for uppercased text styles
 }

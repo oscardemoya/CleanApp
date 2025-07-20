@@ -8,5 +8,5 @@
 import SwiftUI
 
 public extension EnvironmentValues {
-    @Entry var services: ServiceProvider? = nil
+    @Entry var services: ServiceProvider?
 }

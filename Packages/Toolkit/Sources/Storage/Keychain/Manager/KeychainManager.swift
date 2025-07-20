@@ -8,7 +8,7 @@
 import Foundation
 import Security
 
-public final class KeychainManager<Key: KeychainKeyProtocol>: KeychainManaging, Sendable {
+public final class KeychainManager<Key: KeychainKeyProtocol>: KeychainManaging {
     
     public init() {}
     

@@ -10,6 +10,7 @@ import SwiftUI
 public struct HierarchicalTextFieldStyle: TextFieldStyle {
     var hierarchy: Hierarchy = .primary
     
+    // swiftlint:disable:next identifier_name
     public func _body(configuration: TextField<Self._Label>) -> some View {
         configuration
             .padding(.small)
@@ -40,13 +41,11 @@ public extension Hierarchy {
 #Preview {
     @Previewable @State var text: String = ""
     VStack(spacing: .zero) {
-        TextField(String("Placeholder"), text: $text)
-            .textFieldStyle(.primary)
-            .padding(.small)
+        TextField(String("Placeholder"), text: $text).textFieldStyle(.primary)
+            .padding()
             .background(.primaryBackground)
-        TextField(String("Placeholder"), text: $text)
-            .textFieldStyle(.secondary)
-            .padding(.small)
+        TextField(String("Placeholder"), text: $text).textFieldStyle(.secondary)
+            .padding()
             .background(.secondaryBackground)
     }
 }

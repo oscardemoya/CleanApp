@@ -15,10 +15,10 @@ let package = Package(
         .executable(
             name: "CleanArchitectureClient",
             targets: ["CleanArchitectureClient"]
-        ),
+        )
     ],
     dependencies: [
-        .package(url: "https://github.com/swiftlang/swift-syntax.git", from: "600.0.0-latest"),
+        .package(url: "https://github.com/swiftlang/swift-syntax.git", from: "600.0.0-latest")
     ],
     targets: [
         .macro(
@@ -40,8 +40,8 @@ let package = Package(
             name: "CleanArchitectureTests",
             dependencies: [
                 "CleanArchitectureMacros",
-                .product(name: "SwiftSyntaxMacrosTestSupport", package: "swift-syntax"),
+                .product(name: "SwiftSyntaxMacrosTestSupport", package: "swift-syntax")
             ]
-        ),
+        )
     ]
 )

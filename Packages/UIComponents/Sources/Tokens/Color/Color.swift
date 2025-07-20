@@ -15,14 +15,19 @@ public extension Color {
     
     // MARK: - Neutral
     
-    // MARK: Basic
+    // MARK: Base
     var baseLight: Color { Config.shared.color.baseLight }
     var baseDark: Color { Config.shared.color.baseDark }
-    var baseWhite: Color { Config.shared.color.baseWhite }
-    var baseLightGray: Color { Config.shared.color.baseLightGray }
+
+    // MARK: Gray
     var baseGray: Color { Config.shared.color.baseGray }
-    var baseDarkGray: Color { Config.shared.color.baseDarkGray }
-    var baseBlack: Color { Config.shared.color.baseBlack }
+    var baseGray2: Color { Config.shared.color.baseGray2 }
+    var baseGray3: Color { Config.shared.color.baseGray3 }
+    var baseGray4: Color { Config.shared.color.baseGray4 }
+    var baseGray5: Color { Config.shared.color.baseGray5 }
+    var baseGray6: Color { Config.shared.color.baseGray6 }
+    
+    // MARK: - Elements
     
     // MARK: Background
     var primaryBackground: Color { Config.shared.color.primaryBackground }

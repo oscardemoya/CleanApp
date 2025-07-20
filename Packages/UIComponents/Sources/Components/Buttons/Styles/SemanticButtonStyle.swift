@@ -36,10 +36,10 @@ public struct SemanticButtonStyle: ButtonStyle {
     
     var foregroundColor: Color {
         switch feedback {
-        case .info: .baseWhite
-        case .success: .baseWhite
-        case .warning: .baseWhite
-        case .danger: .baseWhite
+        case .info: .baseLight
+        case .success: .baseLight
+        case .warning: .baseLight
+        case .danger: .baseLight
         }
     }
     

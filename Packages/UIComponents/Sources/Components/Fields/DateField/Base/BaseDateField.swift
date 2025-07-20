@@ -115,7 +115,7 @@ public struct BaseDateField: View {
                 Divider().overlay(.decorativeElement)
                 DatePicker(titleKey, selection: $internalDate, displayedComponents: displayedComponents)
                     .datePickerStyle(.graphical)
-                    .onChange(of: internalDate) { _, newValue in
+                    .onChange(of: internalDate) { _, _ in
                         if isOptional {
                             optionalDate = internalDate
                         } else {

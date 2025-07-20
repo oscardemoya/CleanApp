@@ -18,7 +18,7 @@ public extension Encodable {
         jsonString?.data(using: .utf8)
     }
     
-    var jsonHTTPBody: Data? {
+    var jsonBody: Data? {
         let encoder = JSONEncoder()
         encoder.keyEncodingStrategy = .convertToSnakeCase
         encoder.outputFormatting = .prettyPrinted
@@ -27,7 +27,8 @@ public extension Encodable {
     
     var dictionary: [String: Any]? {
         guard let data = try? JSONEncoder().encode(self) else { return nil }
-        return (try? JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)).flatMap { $0 as? [String: Any] }
+        return (try? JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed))
+            .flatMap { $0 as? [String: Any] }
     }
     
     func jsonString(using encoder: JSONEncoder = .init()) -> String? {
@@ -45,4 +46,3 @@ public extension Encodable {
         }
     }
 }
-

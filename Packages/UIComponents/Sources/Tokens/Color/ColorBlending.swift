@@ -9,27 +9,54 @@ import SwiftUI
 import Toolkit
 
 public extension Color {
-    static func blend(color1: Color, intensity1: CGFloat = 0.5, color2: Color, intensity2: CGFloat = 0.5) -> Color {
-        let total = intensity1 + intensity2
-        
-        let normalisedIntensity1 = intensity1 / total
-        let normalisedIntensity2 = intensity2 / total
-        
-        guard normalisedIntensity1 > 0 else { return color2 }
-        guard normalisedIntensity2 > 0 else { return color1 }
-        
-        guard let color1Components = color1.cgColor.components else { return color2 }
-        guard let color2Components = color2.cgColor.components else { return color1 }
-        
-        let (r1, g1, b1, a1): (CGFloat, CGFloat, CGFloat, CGFloat) = 
-            (color1Components[0], color1Components[1], color1Components[2], color1Components[3])
-        let (r2, g2, b2, a2): (CGFloat, CGFloat, CGFloat, CGFloat) = 
-            (color2Components[0], color2Components[1], color2Components[2], color2Components[3])
+    private struct ColorComponents {
+        let red: CGFloat
+        let green: CGFloat
+        let blue: CGFloat
+        let alpha: CGFloat
 
-        return Color(.displayP3,
-                     red: normalisedIntensity1 * r1 + normalisedIntensity2 * r2,
-                     green: normalisedIntensity1 * g1 + normalisedIntensity2 * g2,
-                     blue: normalisedIntensity1 * b1 + normalisedIntensity2 * b2,
-                     opacity: normalisedIntensity1 * a1 + normalisedIntensity2 * a2)
+        init?(cgColorComponents components: [CGFloat]) {
+            guard components.count >= 4 else { return nil }
+            self.red = components[0]
+            self.green = components[1]
+            self.blue = components[2]
+            self.alpha = components[3]
+        }
+        
+        init(red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
+            self.red = red
+            self.green = green
+            self.blue = blue
+            self.alpha = alpha
+        }
+
+        func blended(with other: ColorComponents, weight selfWeight: CGFloat, otherWeight: CGFloat) -> ColorComponents {
+            return ColorComponents(
+                red: selfWeight * red + otherWeight * other.red,
+                green: selfWeight * green + otherWeight * other.green,
+                blue: selfWeight * blue + otherWeight * other.blue,
+                alpha: selfWeight * alpha + otherWeight * other.alpha
+            )
+        }
+    }
+
+    static func blend(color1: Color, intensity1: CGFloat = 0.5,
+                      color2: Color, intensity2: CGFloat = 0.5) -> Color {
+        let total = intensity1 + intensity2
+        let normalizedIntensity1 = intensity1 / total
+        let normalizedIntensity2 = intensity2 / total
+
+        guard normalizedIntensity1 > 0 else { return color2 }
+        guard normalizedIntensity2 > 0 else { return color1 }
+        guard let components1 = color1.cgColor.components.flatMap(ColorComponents.init) else { return color2 }
+        guard let components2 = color2.cgColor.components.flatMap(ColorComponents.init) else { return color1 }
+
+        let blended = components1.blended(
+            with: components2,
+            weight: normalizedIntensity1,
+            otherWeight: normalizedIntensity2
+        )
+
+        return Color(.displayP3, red: blended.red, green: blended.green, blue: blended.blue, opacity: blended.alpha)
     }
 }

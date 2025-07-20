@@ -26,7 +26,7 @@ private struct FixedHeightSheetModifier<Value: View>: ViewModifier {
                         .presentationDragIndicator(.visible)
                 }
                 .background(backgroundColor)
-                // TODO: .scrollBounceBehavior(.basedOnSize)
+                .scrollBounceBehavior(.basedOnSize)
             }
     }
 }
@@ -35,7 +35,7 @@ public extension View {
     func fixedHeightSheet<Content>(isPresented: Binding<Bool>,
                                    backgroundColor: Color = .primaryBackground,
                                    @ViewBuilder content: @escaping () -> Content,
-                                   onDismiss: (() -> Void)? = nil) -> some View where Content : View {
+                                   onDismiss: (() -> Void)? = nil) -> some View where Content: View {
         modifier(FixedHeightSheetModifier(
             isPresented: isPresented,
             backgroundColor: backgroundColor,

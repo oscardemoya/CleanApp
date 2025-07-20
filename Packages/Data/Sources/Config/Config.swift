@@ -9,5 +9,5 @@ import Foundation
 
 public class Config {
     public static var isLoggingEnabled = true
-    public static var appGroup: String? = nil
+    public static var appGroup: String?
 }

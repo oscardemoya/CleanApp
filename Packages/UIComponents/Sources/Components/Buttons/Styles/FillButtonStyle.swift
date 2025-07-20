@@ -33,7 +33,7 @@ public struct FillButtonStyle: ButtonStyle {
 public extension ButtonStyle where Self == FillButtonStyle {
     static func filled(
         backgroundColor: Color = .accentBrand,
-        foregroundColor: Color = .baseWhite,
+        foregroundColor: Color = .baseLight,
         disabledBackgroundColor: Color = .nonDecorativeElement.shade(.shade3).opacity(0.5),
         disabledForegroundColor: Color = .primaryText.shade(.shade7).opacity(0.5)
     ) -> Self {

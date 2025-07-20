@@ -7,23 +7,30 @@
 
 import SwiftUI
 
-// TODO: Move values to a Config file
-public enum Padding: CGFloat, Identifiable, Hashable, CaseIterable {
-    case zero = 0
-    case quark = 4
-    case nano = 8
-    case extraSmall = 12
-    case small = 16
-    case medium = 24
-    case large = 32
-    case extraLarge = 40
-    case big = 48
-    case huge = 56
-    case giant = 64
-    case jumbo = 80
+public enum Padding: Identifiable, Hashable, CaseIterable {
+    case zero
+    case quark
+    case nano
+    case extraSmall
+    case small
+    case medium
+    case large
+    case extraLarge
+    case big
+    case huge
+    case giant
+    case jumbo
     
     public var id: Self { self }
-    public var value: CGFloat { values.value(for: Config.shared.sizing) }
     
-    private var values: SizingValues { .init(rawValue) }
+    public var value: CGFloat {
+        let baseValue = Config.shared.padding.value(for: self)
+        return SizingValues(baseValue).value(for: Config.shared.sizing)
+    }
+    
+    var index: Int? { Self.indexMap[self] }
+    
+    private static let indexMap: [Padding: Int] = {
+        Dictionary(uniqueKeysWithValues: Padding.allCases.enumerated().map { ($1, $0) })
+    }()
 }

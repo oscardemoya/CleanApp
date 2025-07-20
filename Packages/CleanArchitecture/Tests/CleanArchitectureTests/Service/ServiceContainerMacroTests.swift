@@ -46,4 +46,3 @@ final class ServiceContainerMacroTests: XCTestCase {
         #endif
     }
 }
-

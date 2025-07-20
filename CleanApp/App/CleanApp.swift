@@ -9,16 +9,22 @@ import SwiftUI
 import OSLog
 import Presentation
 import Domain
+import DesignSystem
 
 @main
-struct CleanApp: App {
+struct MeicoApp: App {
+    init() {
+        logger.info("Environment: \(AppEnvironment.current.rawValue)")
+        DesignSystem.configure()
+    }
+    
     var body: some Scene {
         WindowGroup {
-            LoginView()
-                .environment(\.services, ServiceContainer(environment: .current))
-                .onAppear {
-                    logger.info("Environment: \(AppEnvironment.current.rawValue)")
-                }
+            Group {
+                LoginView()
+            }
+            .environment(\.services, ServiceContainer(environment: .current))
+            .designSystem()
         }
     }
 }

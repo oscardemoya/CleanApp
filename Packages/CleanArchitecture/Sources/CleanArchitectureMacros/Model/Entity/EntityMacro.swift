@@ -15,7 +15,6 @@ public struct EntityMacro: MemberMacro {
     struct PropertyInfo {
         let name: String
         let type: String
-        let domainKey: String
     }
     
     public static func expansion(
@@ -86,15 +85,14 @@ public struct EntityMacro: MemberMacro {
                 }
                 
                 let propertyName = pattern.identifier.text
-                var domainKey = propertyName
                 
                 // Get the type
-                let typeDescription = binding.typeAnnotation?.type.description.trimmingCharacters(in: .whitespaces) ?? "Any"
+                let typeDescription = binding.typeAnnotation?
+                    .type.description.trimmingCharacters(in: .whitespaces) ?? "Any"
                 
                 properties.append(PropertyInfo(
                     name: propertyName,
-                    type: typeDescription,
-                    domainKey: domainKey
+                    type: typeDescription
                 ))
             }
         }
