@@ -7,4 +7,7 @@
 
 public protocol AuthService {
     func login(credentials: LoginCredentials) async throws -> AuthToken
+    func currentAuthToken() throws -> AuthToken
+    func logout() throws
+    func resetPassword(request: ResetPasswordRequest) async throws -> ResetPasswordResponse
 }

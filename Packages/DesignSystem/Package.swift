@@ -23,6 +23,10 @@ let package = Package(
             dependencies: [
                 "Toolkit",
                 "UIComponents"
+            ],
+            path: "Sources",
+            resources: [
+                .process("Resources")
             ]
         ),
         .testTarget(

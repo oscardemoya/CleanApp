@@ -13,6 +13,8 @@ let package = Package(
             targets: ["Toolkit"]
         )
     ],
+    dependencies: [
+    ],
     targets: [
         .target(
             name: "Toolkit",

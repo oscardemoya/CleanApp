@@ -11,11 +11,13 @@ public struct HierarchicalTextFieldStyle: TextFieldStyle {
     var hierarchy: Hierarchy = .primary
     
     // swiftlint:disable:next identifier_name
-    public func _body(configuration: TextField<Self._Label>) -> some View {
+    public func _body(configuration: TextField<_Label>) -> some View {
         configuration
             .padding(.small)
             .background(hierarchy.inputBackgroundColor)
             .foregroundStyle(hierarchy.inputForegroundColor)
+            .textStyle(Config.shared.textField.textStyle)
+            .textCase(Config.shared.textField.textCase)
             .borderStyle(
                 Config.shared.textField.borderStyle,
                 borderColor: Config.shared.textField.borderColor,

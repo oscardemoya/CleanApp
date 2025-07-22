@@ -10,13 +10,13 @@ import Domain
 import Foundation
 
 @ModelConvertible
-public struct AuthTokenData: Codable {
-    public var id: Int
-    public var email: String
-    public var username: String
-    public var firstName: String
-    public var lastName: String
-    public var image: String
-    public var accessToken: String
-    public var refreshToken: String
+struct AuthTokenData: Codable {
+    var id: Int
+    var email: String
+    var username: String?
+    var firstName: String?
+    var lastName: String?
+    var image: String?
+    var accessToken: String?
+    var refreshToken: String?
 }

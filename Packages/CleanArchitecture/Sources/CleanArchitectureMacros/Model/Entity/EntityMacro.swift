@@ -15,6 +15,7 @@ public struct EntityMacro: MemberMacro {
     struct PropertyInfo {
         let name: String
         let type: String
+        var isOptional: Bool { type.hasSuffix("?") || type.hasPrefix("Optional<") }
     }
     
     public static func expansion(
@@ -102,7 +103,7 @@ public struct EntityMacro: MemberMacro {
     
     private static func generateDefaultInitParametersWithTypes(for properties: [PropertyInfo]) -> String {
         properties
-            .map { "\($0.name): \($0.type)" }
+            .map { "\($0.name): \($0.type)\($0.isOptional ? " = nil" : "")" }
             .joined(separator: ", ")
     }
     

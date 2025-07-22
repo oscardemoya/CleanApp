@@ -95,7 +95,7 @@ extension ModelConvertibleMacro {
         
         private static func generateDefaultInitParametersWithTypes(for properties: [PropertyInfo]) -> String {
             properties
-                .map { "\($0.name): \($0.type)" }
+                .map { "\($0.name): \($0.type)\($0.isOptional ? " = nil" : "")" }
                 .joined(separator: ", ")
         }
         

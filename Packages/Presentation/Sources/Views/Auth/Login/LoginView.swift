@@ -7,37 +7,19 @@
 
 import SwiftUI
 import Domain
-import DesignSystem
+import UIComponents
 
-public struct LoginView: View {
-    @Environment(\.services) var services
+public struct LoginView {
+    @Environment(\.authService) var authService: AuthService?
+    @Binding var state: ViewState<AuthToken>
+    @State var form = LoginFormModel()
+    @State var path = NavigationPath()
     
-    public init() {}
-    
-    @State var username: String = ""
-    @State var password: String = ""
-    @State var isLoggingIn: Bool = false
-    @State var loginError: String?
-    
-    public var body: some View {
-        NavigationStack {
-            VStack(spacing: .small) {
-                TextField("Username", text: $username)
-                    .keyboardType(.numberPad)
-                SecureField("Password", text: $password)
-                    .textFieldError(loginError)
-                Button("Login", action: login)
-                    .loadingButton(isLoggingIn)
-                    .disabled(username.isEmpty || password.isEmpty)
-                    .frame(maxWidth: .infinity)
-                Spacer()
-            }
-            .padding(.medium)
-            .navigationTitle("Login")
-        }
+    enum Destination: String, Hashable {
+        case forgotPassword
     }
-}
-
-#Preview {
-    LoginView()
+    
+    public init(state: Binding<ViewState<AuthToken>>) {
+        self._state = state
+    }
 }

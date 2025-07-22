@@ -9,4 +9,6 @@ import Foundation
 
 public protocol TokenRepository: Sendable {
     func save(token: AuthToken) throws
+    func currentAuthToken() throws -> AuthToken
+    func deleteCurrentAuthToken() throws
 }

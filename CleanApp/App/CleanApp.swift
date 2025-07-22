@@ -12,7 +12,7 @@ import Domain
 import DesignSystem
 
 @main
-struct MeicoApp: App {
+struct CleanApp: App {
     init() {
         logger.info("Environment: \(AppEnvironment.current.rawValue)")
         DesignSystem.configure()
@@ -20,11 +20,9 @@ struct MeicoApp: App {
     
     var body: some Scene {
         WindowGroup {
-            Group {
-                LoginView()
-            }
-            .environment(\.services, ServiceContainer(environment: .current))
-            .designSystem()
+            MainView()
+                .designSystem()
+                .serviceContainer()
         }
     }
 }

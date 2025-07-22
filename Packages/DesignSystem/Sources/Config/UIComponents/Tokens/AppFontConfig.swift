@@ -12,27 +12,30 @@ struct AppFontConfig: FontConfig {
     static var shared: Self { .init() }
     
     var design: Font.Design { .rounded }
-    var source: FontSource { .system }
+    
+    func font(for style: TextStyle) -> FontSource {
+        Self.fontStyles[style]?.font ?? .system
+    }
     
     func size(for style: TextStyle) -> CGFloat {
-        Self.fontSizes[style]?.fontSize ?? 16
+        Self.fontStyles[style]?.fontSize ?? 16
     }
     
     func weight(for style: TextStyle) -> Font.Weight {
-        Self.fontSizes[style]?.fontWeight ?? .regular
+        Self.fontStyles[style]?.fontWeight ?? .regular
     }
     
-    static let fontSizes: [TextStyle: TextStyleConfig] = [
-        .display: (fontWeight: .bold, fontSize: 72),
-        .header: (fontWeight: .bold, fontSize: 44),
-        .title1: (fontWeight: .bold, fontSize: 36),
-        .title2: (fontWeight: .bold, fontSize: 28),
-        .headline: (fontWeight: .bold, fontSize: 22),
-        .subtitle: (fontWeight: .semibold, fontSize: 14),
-        .large: (fontWeight: .semibold, fontSize: 18),
-        .body: (fontWeight: .regular, fontSize: 16),
-        .small: (fontWeight: .regular, fontSize: 14),
-        .caption: (fontWeight: .regular, fontSize: 12),
-        .overline: (fontWeight: .bold, fontSize: 10)
+    static let fontStyles: [TextStyle: TextStyleConfig] = [
+        .display: .init(font: .custom(.sourceSans), fontWeight: .bold, fontSize: 72),
+        .header: .init(font: .custom(.sourceSans), fontWeight: .bold, fontSize: 44),
+        .title1: .init(font: .custom(.sourceSans), fontWeight: .bold, fontSize: 36),
+        .title2: .init(font: .custom(.sourceSans), fontWeight: .bold, fontSize: 28),
+        .headline: .init(font: .custom(.sourceSans), fontWeight: .medium, fontSize: 22),
+        .large: .init(font: .custom(.sourceSans), fontWeight: .regular, fontSize: 18),
+        .body: .init(font: .custom(.sourceSans), fontWeight: .regular, fontSize: 16),
+        .subtitle: .init(font: .custom(.sourceSans), fontWeight: .bold, fontSize: 14),
+        .small: .init(font: .custom(.sourceSans), fontWeight: .semibold, fontSize: 14),
+        .caption: .init(font: .custom(.sourceSans), fontWeight: .regular, fontSize: 12),
+        .overline: .init(font: .custom(.sourceSans), fontWeight: .bold, fontSize: 10)
     ]
 }

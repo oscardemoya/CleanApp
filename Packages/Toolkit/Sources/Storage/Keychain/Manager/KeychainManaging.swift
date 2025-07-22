@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol KeychainManaging {
+public protocol KeychainManaging: Sendable {
     associatedtype Key: KeychainKeyProtocol
     
     // String operations

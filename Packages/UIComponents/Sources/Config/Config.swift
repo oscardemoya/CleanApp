@@ -7,7 +7,7 @@
 
 public class Config {
     public static let shared = Config()
-    public var isLoggingEnabled = true
+    public static var isLoggingEnabled = true
 
     // Tokens
     public var sizing: Sizing = .regular
@@ -30,7 +30,7 @@ public class Config {
     public var navigationBar: any NavigationBarConfig = DefaultNavigationBarConfig()
     
     public var customFontFamily: any FontFamily {
-        switch font.source {
+        switch font.font(for: .body) {
         case .system: DefaultFontFamily()
         case .custom(let fontFamily): fontFamily
         }

@@ -1,17 +1,6 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "Anonymous" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Anónimo"
-          }
-        }
-      }
-    },
     "Authentication was canceled." : {
       "localizations" : {
         "es" : {
@@ -68,17 +57,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Usuario no válido."
-          }
-        }
-      }
-    },
-    "This too shall pass." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Esto también pasará."
           }
         }
       }

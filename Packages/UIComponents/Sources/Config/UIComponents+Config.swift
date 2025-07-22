@@ -9,8 +9,7 @@ import Foundation
 import SwiftUI
 
 public extension UIComponents {
-    static func configure(sizing: Sizing, isLoggingEnabled: Bool = false) {
+    static func configure(sizing: Sizing) {
         Config.shared.sizing = sizing
-        Config.shared.isLoggingEnabled = isLoggingEnabled
     }
 }

@@ -8,9 +8,13 @@
 import CleanArchitecture
 import Domain
 
-@Injectable<AuthDataSource>
+@Injectable<any AuthDataSource>
 final class DefaultAuthRepository: AuthRepository, Sendable {
     func login(credentials: LoginCredentials) async throws -> AuthToken {
         try await authDataSource.login(credentials: LoginCredentialsData(entity: credentials)).asDomainEntity
+    }
+    
+    func resetPassword(request: ResetPasswordRequest) async throws -> ResetPasswordResponse {
+        try await authDataSource.resetPassword(email: request.username).asDomainEntity
     }
 }

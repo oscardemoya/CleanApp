@@ -19,9 +19,13 @@ struct Appearance {
     static func configureNavigationBars() {
 #if !os(macOS) && !targetEnvironment(macCatalyst)
         let largeTitleAppearance = UINavigationBarAppearance()
-        largeTitleAppearance.largeTitleTextAttributes = [.font: TextStyle.title2.uiFont]
+        if let font = TextStyle.title2.uiFont {
+            largeTitleAppearance.largeTitleTextAttributes = [.font: font]
+        }
         let smallTitleAppearance = UINavigationBarAppearance()
-        smallTitleAppearance.titleTextAttributes = [.font: TextStyle.headline.uiFont]
+        if let font = TextStyle.headline.uiFont {
+            smallTitleAppearance.titleTextAttributes = [.font: font]
+        }
         
         largeTitleAppearance.configureWithTransparentBackground()
         largeTitleAppearance.backgroundColor = .clear

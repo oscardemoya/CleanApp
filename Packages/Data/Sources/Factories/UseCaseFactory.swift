@@ -11,5 +11,9 @@ import Domain
 
 @Injectable<RepositoryFactory>
 public struct UseCaseFactory {
+    // Auth
     #MakeUseCase<AuthRepository & TokenRepository, LoginUseCase>()
+    #MakeUseCase<TokenRepository, CurrentAuthTokenUseCase>()
+    #MakeUseCase<TokenRepository, LogoutUseCase>()
+    #MakeUseCase<AuthRepository, ResetPasswordUseCase>()
 }

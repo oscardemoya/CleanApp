@@ -16,6 +16,7 @@ public struct ModelConvertibleMacro: MemberMacro {
         let name: String
         let type: String
         let domainKey: String
+        var isOptional: Bool { type.hasSuffix("?") || type.hasPrefix("Optional<") }
     }
     
     public static func expansion(

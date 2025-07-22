@@ -10,7 +10,7 @@ import Domain
 import Foundation
 
 @ModelConvertible
-public struct LoginCredentialsData: Codable {
+struct LoginCredentialsData: Codable {
     let username: String
     let password: String
 }

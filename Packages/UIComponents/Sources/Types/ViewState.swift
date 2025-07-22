@@ -5,9 +5,10 @@
 //  Created by Oscar De Moya on 9/25/24.
 //
 
-import Foundation
+import SwiftUI
 
 public enum ViewState<T: Equatable>: Equatable {
+    case initial
     case empty
     case loading
     case content(T)
@@ -28,9 +29,38 @@ public enum ViewState<T: Equatable>: Equatable {
         }
     }
     
+    public var hasContent: Bool {
+        if case .content = self { true } else { false }
+    }
+    
+    public var error: Error? {
+        switch self {
+        case .failure(let error): error
+        default: nil
+        }
+    }
+    
+    public var errorMessage: String? {
+        error?.localizedDescription
+    }
+    
+    public var isActive: Bool {
+        switch self {
+        case .loading, .content: true
+        default: false
+        }
+    }
+    
+    public var canDisplayContent: Bool {
+        switch self {
+        case .initial, .content: true
+        default: false
+        }
+    }
+    
     public static func == (lhs: ViewState<T>, rhs: ViewState<T>) -> Bool {
         switch (lhs, rhs) {
-        case (.empty, .empty), (.loading, .loading), (.failure, .failure): true
+        case (.initial, .initial), (.empty, .empty), (.loading, .loading), (.failure, .failure): true
         case (.content(let oldValue), .content(let newValue)): oldValue == newValue
         default: false
         }

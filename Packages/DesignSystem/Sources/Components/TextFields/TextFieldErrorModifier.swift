@@ -17,7 +17,7 @@ struct TextFieldErrorModifier: ViewModifier {
             content
             if let error, !error.isEmpty {
                 Text(error)
-                    .font(.footnote)
+                    .textStyle(.caption)
                     .foregroundColor(.dangerFeedback)
             }
         }
@@ -25,21 +25,14 @@ struct TextFieldErrorModifier: ViewModifier {
 }
 
 public extension View {
-    func textFieldError(_ error: String?, spacing: Spacing = .extraSmall) -> some View {
+    func textFieldError(_ error: String?, spacing: Spacing = .nano) -> some View {
         self.modifier(TextFieldErrorModifier(error: error, spacing: spacing))
     }
 }
 
 #Preview {
     @Previewable @State var text: String = ""
-    VStack(spacing: .small) {
-        TextField("Placeholder", text: $text)
-            .textFieldStyle(.primary)
-            .padding()
-            .background(.primaryBackground)
-        TextField("Placeholder", text: $text)
-            .textFieldStyle(.secondary)
-            .padding()
-            .background(.secondaryBackground)
-    }
+    TextField("Placeholder", text: $text)
+        .textFieldError("This is an error message", spacing: .extraSmall)
+        .padding()
 }
