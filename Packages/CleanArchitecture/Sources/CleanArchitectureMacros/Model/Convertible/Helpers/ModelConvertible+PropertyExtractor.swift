@@ -38,6 +38,11 @@ extension ModelConvertibleMacro {
                 return false
             }
             
+            // Exclude static properties
+            guard variableDecl.modifiers.allSatisfy({ $0.name.tokenKind != .keyword(.static) }) else {
+                return false
+            }
+            
             // Ensure it's not a computed property
             guard variableDecl.bindings.allSatisfy({ $0.accessorBlock == nil }) else {
                 return false
@@ -53,15 +58,17 @@ extension ModelConvertibleMacro {
                 guard let pattern = binding.pattern.as(IdentifierPatternSyntax.self) else {
                     continue
                 }
-                
+
                 let propertyName = pattern.identifier.text
                 let typeDescription = extractTypeDescription(from: binding)
                 let domainKey = extractDomainKey(from: variableDecl, defaultKey: propertyName)
+                let omit = extractOmitConversion(from: variableDecl)
                 
                 result.append(PropertyInfo(
                     name: propertyName,
                     type: typeDescription,
-                    domainKey: domainKey
+                    domainKey: domainKey,
+                    omit: omit
                 ))
             }
             
@@ -102,6 +109,19 @@ extension ModelConvertibleMacro {
             }
             
             return nil
+        }
+        
+        private static func extractOmitConversion(from variableDecl: VariableDeclSyntax) -> Bool {
+            variableDecl.attributes.contains { processOmitConversionAttribute($0) }
+        }
+        
+        private static func processOmitConversionAttribute(_ attribute: AttributeListSyntax.Element) -> Bool {
+            if let attributeSyntax = attribute.as(AttributeSyntax.self),
+               let attributeName = attributeSyntax.attributeName.as(IdentifierTypeSyntax.self),
+                attributeName.name.text == "OmitConversion" {
+                return true
+            }
+            return false
         }
     }
 }

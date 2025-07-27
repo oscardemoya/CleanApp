@@ -16,7 +16,50 @@ public struct ModelConvertibleMacro: MemberMacro {
         let name: String
         let type: String
         let domainKey: String
+        var domainType: String { (type.arrayElementType ?? type).replacingOccurrences(of: "Data", with: "") }
+        var omit: Bool
         var isOptional: Bool { type.hasSuffix("?") || type.hasPrefix("Optional<") }
+        var isArray: Bool { type.isArrayType }
+        
+        var initDefaultValue: String {
+            if isOptional {
+                " = nil"
+            } else if isArray {
+                " = []"
+            } else if type == "String" {
+                " = \"\""
+            } else if type == "Int" || type == "Double" || type == "Float" {
+                " = 0"
+            } else if type == "Bool" {
+                " = false"
+            } else if type == "UUID" {
+                " = UUID()"
+            } else if type == "Date" {
+                " = .now"
+            } else {
+                ""
+            }
+        }
+        
+        var asDomainEntity: String {
+            if let arrayType = type.arrayElementType, arrayType.hasSuffix("Data") {
+                "\(name).map(\\.asDomainEntity)"
+            } else if type.hasSuffix("Data") {
+                "\(name).asDomainEntity"
+            } else {
+                name
+            }
+        }
+        
+        var asDataModel: String {
+            if let arrayType = type.arrayElementType, arrayType.hasSuffix("Data") {
+                "entity.\(domainKey).map { \(arrayType)(entity: $0) }"
+            } else if type.hasSuffix("Data") {
+                "\(type)(entity: entity.\(domainKey))"
+            } else {
+                "entity.\(domainKey)"
+            }
+        }
     }
     
     public static func expansion(

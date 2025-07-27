@@ -13,16 +13,17 @@ import SwiftSyntaxMacros
 @main
 struct CleanArchitecturePlugin: CompilerPlugin {
     let providingMacros: [Macro.Type] = [
+        ServiceContainerMacro.self,
+        AppServiceMacro.self,
+        MakeUseCaseMacro.self,
+        MakeRepositoryMacro.self,
+        MakeDataSourceMacro.self,
         InjectableMacro.self,
         ConfigurableMacro.self,
-        ConvertibleMacro.self,
         ModelConvertibleMacro.self,
+        ConvertibleMacro.self,
+        OmitConversionMacro.self,
         EntityMacro.self,
-        EquatableKeyMacro.self,
-        MakeDataSourceMacro.self,
-        MakeRepositoryMacro.self,
-        MakeUseCaseMacro.self,
-        AppServiceMacro.self,
-        ServiceContainerMacro.self
+        EquatableKeyMacro.self
     ]
 }
