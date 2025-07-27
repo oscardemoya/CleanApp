@@ -13,7 +13,7 @@ import UIComponents
 public struct LoginView {
     @Environment(\.authService) var authService: AuthService?
     @Binding var state: ViewState<AuthToken>
-    @State var form = LoginFormModel()
+    @State var form = LoginForm()
     @State var path = NavigationPath()
     
     public enum Destination: String, Hashable, Sendable {

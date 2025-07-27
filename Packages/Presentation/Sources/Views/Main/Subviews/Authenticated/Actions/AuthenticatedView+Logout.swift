@@ -1,5 +1,5 @@
 //
-//  AuthenticatedView+Action.swift
+//  AuthenticatedView+Logout.swift
 //  Presentation
 //
 //  Created by Oscar De Moya on 2025/7/18.
