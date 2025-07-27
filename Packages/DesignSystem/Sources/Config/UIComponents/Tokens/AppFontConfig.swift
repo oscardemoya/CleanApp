@@ -26,16 +26,16 @@ struct AppFontConfig: FontConfig {
     }
     
     static let fontStyles: [TextStyle: TextStyleConfig] = [
-        .display: .init(font: .custom(.sourceSans), fontWeight: .bold, fontSize: 72),
-        .header: .init(font: .custom(.sourceSans), fontWeight: .bold, fontSize: 44),
-        .title1: .init(font: .custom(.sourceSans), fontWeight: .bold, fontSize: 36),
-        .title2: .init(font: .custom(.sourceSans), fontWeight: .bold, fontSize: 28),
-        .headline: .init(font: .custom(.sourceSans), fontWeight: .medium, fontSize: 22),
-        .large: .init(font: .custom(.sourceSans), fontWeight: .regular, fontSize: 18),
-        .body: .init(font: .custom(.sourceSans), fontWeight: .regular, fontSize: 16),
-        .subtitle: .init(font: .custom(.sourceSans), fontWeight: .bold, fontSize: 14),
-        .small: .init(font: .custom(.sourceSans), fontWeight: .semibold, fontSize: 14),
-        .caption: .init(font: .custom(.sourceSans), fontWeight: .regular, fontSize: 12),
-        .overline: .init(font: .custom(.sourceSans), fontWeight: .bold, fontSize: 10)
+        .display: .init(font: .custom(.gotham), fontWeight: .bold, fontSize: 72),
+        .header: .init(font: .custom(.gotham), fontWeight: .bold, fontSize: 44),
+        .title1: .init(font: .custom(.gotham), fontWeight: .bold, fontSize: 36),
+        .title2: .init(font: .custom(.gotham), fontWeight: .bold, fontSize: 28),
+        .headline: .init(font: .custom(.gotham), fontWeight: .medium, fontSize: 22),
+        .large: .init(font: .custom(.gotham), fontWeight: .regular, fontSize: 18),
+        .body: .init(font: .custom(.gotham), fontWeight: .regular, fontSize: 16),
+        .subtitle: .init(font: .custom(.gotham), fontWeight: .bold, fontSize: 14),
+        .small: .init(font: .custom(.gotham), fontWeight: .semibold, fontSize: 14),
+        .caption: .init(font: .custom(.gotham), fontWeight: .regular, fontSize: 12),
+        .overline: .init(font: .custom(.gotham), fontWeight: .bold, fontSize: 10)
     ]
 }

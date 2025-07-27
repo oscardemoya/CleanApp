@@ -7,11 +7,12 @@
 
 import Foundation
 
-public protocol PaddingConfig {
+public protocol PaddingConfig: Sendable {
     func value(for padding: Padding) -> CGFloat
 }
 
-struct DefaultPaddingConfig: PaddingConfig {
+@MainActor
+struct DefaultPaddingConfig: @MainActor PaddingConfig {
     func value(for padding: Padding) -> CGFloat {
         guard let index = padding.index else { return 0 }
         let group = index / 3

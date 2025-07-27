@@ -12,24 +12,72 @@ import SwiftSyntaxMacros
 import SwiftDiagnostics
 
 struct MakeUseCaseMacro: DeclarationMacro {
+    typealias Property = (name: String, type: String)
+    
+    // Define a struct to hold the generic arguments result
+    struct GenericArgumentsResult {
+        let repositoryTypes: GenericArgumentSyntax
+        let useCaseType: String
+        let additionalDependencies: [GenericArgumentSyntax]
+    }
+    
     static func expansion(
         of node: some FreestandingMacroExpansionSyntax,
         in context: some MacroExpansionContext
     ) throws -> [DeclSyntax] {
-        
-        // Extract the repository protocol types and use case type (e.g., <AuthRepository, LoginUseCase>)
-        guard let genericArguments = node.genericArgumentClause?.arguments, genericArguments.count == 2,
-              let repositoryTypes = genericArguments.first,
-              let useCaseType = genericArguments.last?.argument.description else {
-            let diagnostic = Diagnostic(
-                node: node,
-                message: MakeUseCaseDiagnostic.invalidArguments
-            )
-            context.diagnose(diagnostic)
+        // Validate and extract generic arguments
+        guard let genericArguments = extractGenericArguments(from: node, context: context) else {
             return []
         }
         
-        var properties = [(name: String, type: String)]()
+        // Parse repository dependencies
+        guard let repositoryProperties = parseRepositoryProperties(
+            from: genericArguments.repositoryTypes,
+            context: context,
+            node: node
+        ) else {
+            return []
+        }
+        
+        // Parse additional dependencies
+        let useCaseProperties = parseAdditionalDependencies(from: genericArguments.additionalDependencies)
+        
+        // Generate factory function
+        let factoryFunction = generateFactoryFunction(
+            useCaseType: genericArguments.useCaseType,
+            repositoryProperties: repositoryProperties,
+            useCaseProperties: useCaseProperties
+        )
+        
+        return [factoryFunction]
+    }
+    
+    // MARK: - Helper Methods
+    
+    private static func extractGenericArguments(
+        from node: some FreestandingMacroExpansionSyntax,
+        context: some MacroExpansionContext
+    ) -> GenericArgumentsResult? {
+        guard let arguments = node.genericArgumentClause?.arguments,
+              arguments.count >= 2 else {
+            context.diagnose(Diagnostic(node: node, message: MakeUseCaseDiagnostic.invalidArguments))
+            return nil
+        }
+        
+        return GenericArgumentsResult(
+            repositoryTypes: arguments.first!,
+            useCaseType: arguments.dropFirst().first!.argument.description.trimmed,
+            additionalDependencies: Array(arguments.dropFirst(2))
+        )
+    }
+    
+    private static func parseRepositoryProperties(
+        from repositoryTypes: GenericArgumentSyntax,
+        context: some MacroExpansionContext,
+        node: some FreestandingMacroExpansionSyntax
+    ) -> [Property]? {
+        var properties = [Property]()
+        
         if let composition = repositoryTypes.argument.as(CompositionTypeSyntax.self) {
             let types = composition.elements.compactMap { $0.type.description.trimmed }
             properties = types.map { (name: $0.asVariableName, type: $0) }
@@ -43,32 +91,65 @@ struct MakeUseCaseMacro: DeclarationMacro {
         }
         
         guard !properties.isEmpty else {
-            let diagnostic = Diagnostic(
-                node: node,
-                message: MakeUseCaseDiagnostic.noRepositoryProtocol
-            )
-            context.diagnose(diagnostic)
-            return []
+            context.diagnose(Diagnostic(node: node, message: MakeUseCaseDiagnostic.noRepositoryProtocol))
+            return nil
         }
         
-        let repositoryInits = properties
-            .map { "let \($0.name) = repositoryFactory.make\($0.type)()"}
-            .joined(separator: "\n    ")
+        return properties
+    }
+    
+    private static func parseAdditionalDependencies(from dependencies: [GenericArgumentSyntax]) -> [Property] {
+        return dependencies.map { dependency in
+            let type = dependency.argument.description.trimmed
+            return (name: type.asVariableName, type: type)
+        }
+    }
+    
+    private static func generateFactoryFunction(
+        useCaseType: String,
+        repositoryProperties: [Property],
+        useCaseProperties: [Property]
+    ) -> DeclSyntax {
+        // Generate initialization code
+        let repositoryInits = generateRepositoryInits(from: repositoryProperties)
+        let useCaseInits = generateUseCaseInits(from: useCaseProperties)
+        let allProperties = repositoryProperties + useCaseProperties
         
-        // Extract the concrete repository implementation (e.g., DefaultAuthUseCase)
-        let funcArgs = properties.map { "\($0.name): \($0.name)" }.joined(separator: ", ")
-        
-        // Generate the factory struct code
+        // Generate function body
         let factoryDecl = """
         public func make\(useCaseType)() -> \(useCaseType) {
-            \(repositoryInits)
-            return \(useCaseType)(\(funcArgs))
+            \(generateCombinedInits(repositoryInits: repositoryInits, useCaseInits: useCaseInits))
+            return \(useCaseType)(
+                \(generateFunctionArguments(from: allProperties))
+            )
         }
         """
         
-        // Parse the generated class, protocol, and method into SwiftSyntax
-        let factoryStructSyntax = DeclSyntax(stringLiteral: factoryDecl)
-        
-        return [factoryStructSyntax]
+        return DeclSyntax(stringLiteral: factoryDecl)
+    }
+    
+    private static func generateRepositoryInits(from properties: [Property]) -> String {
+        return properties
+            .map { "let \($0.name) = repositoryFactory.make\($0.type)()" }
+            .joined(separator: "\n    ")
+    }
+    
+    private static func generateUseCaseInits(from properties: [Property]) -> String {
+        return properties
+            .map { "let \($0.name) = make\($0.type)()" }
+            .joined(separator: "\n    ")
+    }
+    
+    private static func generateCombinedInits(repositoryInits: String, useCaseInits: String) -> String {
+        var allInits = [String]()
+        if !repositoryInits.isEmpty { allInits.append(repositoryInits) }
+        if !useCaseInits.isEmpty { allInits.append(useCaseInits) }
+        return allInits.joined(separator: "\n    ")
+    }
+    
+    private static func generateFunctionArguments(from properties: [Property]) -> String {
+        return properties
+            .map { "\($0.name): \($0.name)" }
+            .joined(separator: ",\n        ")
     }
 }

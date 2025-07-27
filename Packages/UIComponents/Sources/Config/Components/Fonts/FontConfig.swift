@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-public protocol FontConfig {
+public protocol FontConfig: Sendable {
     var design: Font.Design { get }
     func font(for style: TextStyle) -> FontSource
     func size(for style: TextStyle) -> CGFloat
@@ -18,18 +18,18 @@ struct DefaultFontConfig: FontConfig {
     var design: Font.Design { .default }
     
     func font(for style: TextStyle) -> FontSource {
-        Self.fontStyles[style]?.font ?? .system
+        fontStyles[style]?.font ?? .system
     }
     
     func size(for style: TextStyle) -> CGFloat {
-        Self.fontStyles[style]?.fontSize ?? 16
+        fontStyles[style]?.fontSize ?? 16
     }
     
     func weight(for style: TextStyle) -> Font.Weight {
-        Self.fontStyles[style]?.fontWeight ?? .regular
+        fontStyles[style]?.fontWeight ?? .regular
     }
     
-    static let fontStyles: [TextStyle: TextStyleConfig] = [
+    let fontStyles: [TextStyle: TextStyleConfig] = [
         .display: .init(font: .system, fontWeight: .bold, fontSize: 72),
         .header: .init(font: .system, fontWeight: .bold, fontSize: 44),
         .title1: .init(font: .system, fontWeight: .bold, fontSize: 36),

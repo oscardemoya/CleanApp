@@ -15,7 +15,7 @@ public protocol CheckboxStyle {
 }
 
 public extension CheckboxStyle where Self == SquaredCheckboxStyle {
-    static var `default`: SquaredCheckboxStyle { .init() }
+    @MainActor static var `default`: SquaredCheckboxStyle { .init() }
 }
 
 public struct CheckboxStyleConfiguration {
@@ -26,8 +26,15 @@ public struct CheckboxStyleConfiguration {
     }
 }
 
+struct CheckboxStyleKey: @MainActor EnvironmentKey {
+    @MainActor static var defaultValue = AnyCheckboxStyle(style: .default)
+}
+
 extension EnvironmentValues {
-    @Entry var checkboxStyle = AnyCheckboxStyle(style: .default)
+    @MainActor var checkboxStyle: AnyCheckboxStyle {
+        get { self[CheckboxStyleKey.self] }
+        set { self[CheckboxStyleKey.self] = newValue }
+    }
 }
 
 public extension View {
@@ -37,15 +44,15 @@ public extension View {
 }
 
 struct AnyCheckboxStyle: CheckboxStyle {
-    private var _makeBody: (Configuration) -> AnyView
-    
-    init<S: CheckboxStyle>(style: S) {
-        _makeBody = { configuration in
+    private let _makeBody: (Configuration) -> AnyView
+
+    public init<S: CheckboxStyle>(style: S) {
+        self._makeBody = { configuration in
             AnyView(style.makeBody(configuration: configuration))
         }
     }
-    
-    func makeBody(configuration: Configuration) -> some View {
+
+    public func makeBody(configuration: Configuration) -> some View {
         _makeBody(configuration)
     }
 }

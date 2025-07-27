@@ -8,7 +8,7 @@
 import Foundation
 import Networking
 
-final class RestAPI: API {
+struct RestAPI: API {
     let environment: AppEnvironment
     
     init(environment: AppEnvironment) {

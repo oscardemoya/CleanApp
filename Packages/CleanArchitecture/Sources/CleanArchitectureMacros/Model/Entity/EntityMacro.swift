@@ -15,12 +15,16 @@ public struct EntityMacro: MemberMacro {
     struct PropertyInfo {
         let name: String
         let type: String
-        var isOptional: Bool { type.hasSuffix("?") || type.hasPrefix("Optional<") }
+        let isEquatableKey: Bool
+        var isOptional: Bool {
+            type.hasSuffix("?") || type.hasPrefix("Optional<")
+        }
     }
     
     public static func expansion(
         of node: AttributeSyntax,
         providingMembersOf declaration: some DeclGroupSyntax,
+        conformingTo protocols: [TypeSyntax],
         in context: some MacroExpansionContext
     ) throws -> [DeclSyntax] {
         guard let structDecl = declaration.as(StructDeclSyntax.self) else {
@@ -45,6 +49,7 @@ public struct EntityMacro: MemberMacro {
         
         let accessLevel = extractAccessLevel(from: structDecl)
         let hasDefaultInit = hasDefaultInitializer(in: structDecl)
+        let conformsToEquatable = checkEquatableConformance(in: structDecl)
         
         var members: [DeclSyntax] = []
         
@@ -52,12 +57,30 @@ public struct EntityMacro: MemberMacro {
         if !hasDefaultInit {
             let defaultInit = DeclSyntax(
                 """
-                \(raw: accessLevel)init(\(raw: generateDefaultInitParametersWithTypes(for: properties))) {
+                \(raw: accessLevel)init(
+                \(raw: generateDefaultInitParametersWithTypes(for: properties))
+                ) {
                     \(raw: generateDefaultInitAssignments(for: properties))
                 }
                 """
             )
             members.append(defaultInit)
+        }
+        
+        // Generate Equatable implementation if struct conforms to Equatable
+        if conformsToEquatable {
+            let equatableProperties = properties.filter { $0.isEquatableKey }
+            
+            if !equatableProperties.isEmpty {
+                let equalityOperator = DeclSyntax(
+                    """
+                    \(raw: accessLevel)static func == (lhs: Self, rhs: Self) -> Bool {
+                        \(raw: generateEqualityChecks(for: equatableProperties))
+                    }
+                    """
+                )
+                members.append(equalityOperator)
+            }
         }
         
         return members
@@ -80,20 +103,28 @@ public struct EntityMacro: MemberMacro {
                 continue
             }
             
+            // Check if property has @EquatableKey attribute
+            let hasEquatableKey = variableDecl.attributes.contains { attribute in
+                guard let attributeSyntax = attribute.as(AttributeSyntax.self),
+                      let attributeName = attributeSyntax.attributeName.as(IdentifierTypeSyntax.self) else {
+                    return false
+                }
+                return attributeName.name.text == "EquatableKey"
+            }
+            
             for binding in variableDecl.bindings {
                 guard let pattern = binding.pattern.as(IdentifierPatternSyntax.self) else {
                     continue
                 }
                 
                 let propertyName = pattern.identifier.text
-                
-                // Get the type
                 let typeDescription = binding.typeAnnotation?
                     .type.description.trimmingCharacters(in: .whitespaces) ?? "Any"
                 
                 properties.append(PropertyInfo(
                     name: propertyName,
-                    type: typeDescription
+                    type: typeDescription,
+                    isEquatableKey: hasEquatableKey
                 ))
             }
         }
@@ -101,16 +132,41 @@ public struct EntityMacro: MemberMacro {
         return properties
     }
     
+    private static func checkEquatableConformance(in structDecl: StructDeclSyntax) -> Bool {
+        structDecl.inheritanceClause?.inheritedTypes.contains { inherited in
+            inherited.type.description.trimmingCharacters(in: .whitespaces) == "Equatable"
+        } ?? false
+    }
+    
     private static func generateDefaultInitParametersWithTypes(for properties: [PropertyInfo]) -> String {
-        properties
-            .map { "\($0.name): \($0.type)\($0.isOptional ? " = nil" : "")" }
-            .joined(separator: ", ")
+        if properties.isEmpty {
+            return ""
+        }
+        
+        let parameters = properties.map { property in
+            "    \(property.name): \(property.type)\(property.isOptional ? " = nil" : "")"
+        }
+        
+        return parameters.joined(separator: ",\n")
     }
     
     private static func generateDefaultInitAssignments(for properties: [PropertyInfo]) -> String {
         properties
             .map { "self.\($0.name) = \($0.name)" }
             .joined(separator: "\n    ")
+    }
+    
+    private static func generateEqualityChecks(for properties: [PropertyInfo]) -> String {
+        if properties.isEmpty {
+            return "true"
+        }
+        
+        // Generate a single return statement with && operators
+        let comparisons = properties.map { property in
+            "lhs.\(property.name) == rhs.\(property.name)"
+        }
+        
+        return comparisons.joined(separator: " &&\n    ")
     }
     
     private static func hasDefaultInitializer(in structDecl: StructDeclSyntax) -> Bool {

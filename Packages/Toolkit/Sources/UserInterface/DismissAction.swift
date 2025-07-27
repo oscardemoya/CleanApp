@@ -7,13 +7,6 @@
 
 import SwiftUI
 
-public struct DismissActionKey: EnvironmentKey {
-    public static let defaultValue: Action? = nil
-}
-
 public extension EnvironmentValues {
-    var dismissAction: Action? {
-        get { self[DismissActionKey.self] }
-        set { self[DismissActionKey.self] = newValue }
-    }
+    @Entry var dismissAction: Action?
 }

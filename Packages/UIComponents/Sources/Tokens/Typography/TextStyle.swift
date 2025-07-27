@@ -8,7 +8,8 @@
 import SwiftUI
 import Toolkit
 
-public enum TextStyle: String, Identifiable, Hashable, CaseIterable {
+@MainActor
+public enum TextStyle: String, @MainActor Identifiable, Hashable, CaseIterable, Sendable {
     case display
     case header
     case title1

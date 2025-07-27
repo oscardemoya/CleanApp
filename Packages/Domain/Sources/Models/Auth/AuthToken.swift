@@ -9,7 +9,7 @@ import Foundation
 import CleanArchitecture
 
 @Entity
-public struct AuthToken: Equatable {
+public struct AuthToken: Equatable, Sendable {
     public var id: Int
     public var email: String
     public var username: String?

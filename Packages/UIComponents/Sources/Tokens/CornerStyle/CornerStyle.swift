@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-public enum CornerStyle: Identifiable, Hashable {
+@MainActor
+public enum CornerStyle: @MainActor Identifiable, Hashable, Sendable {
     case sharp
     case rounded(CornerRadius)
     case capsule
@@ -30,7 +31,7 @@ public enum CornerStyle: Identifiable, Hashable {
         case .sharp:
             Rectangle()
         case .rounded(let cornerRadius):
-            RoundedRectangle(cornerRadius: cornerRadius.rawValue, style: .continuous)
+            RoundedRectangle(cornerRadius: cornerRadius.value, style: .continuous)
         case .capsule:
             Capsule()
         case .circle:

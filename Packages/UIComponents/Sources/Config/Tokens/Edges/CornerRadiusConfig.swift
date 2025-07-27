@@ -7,11 +7,12 @@
 
 import Foundation
 
-public protocol CornerRadiusConfig {
+public protocol CornerRadiusConfig: Sendable {
     func value(for cornerRadius: CornerRadius) -> CGFloat
 }
 
-struct DefaultCornerRadiusConfig: CornerRadiusConfig {
+@MainActor
+struct DefaultCornerRadiusConfig: @MainActor CornerRadiusConfig {
     func value(for cornerRadius: CornerRadius) -> CGFloat {
         switch cornerRadius {
         case .nano: 2

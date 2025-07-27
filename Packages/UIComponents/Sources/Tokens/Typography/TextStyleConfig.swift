@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-public struct TextStyleConfig {
+public struct TextStyleConfig: Sendable {
     public let font: FontSource
     public let fontWeight: Font.Weight
     public let fontSize: CGFloat

@@ -4,6 +4,7 @@
 import Toolkit
 import UIComponents
 
+@MainActor
 public struct DesignSystem {
     public static func configure() {
         UIComponents.configure()

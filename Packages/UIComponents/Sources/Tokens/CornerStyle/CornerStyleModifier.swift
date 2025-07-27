@@ -23,7 +23,7 @@ private struct CornerStyleModifier: ViewModifier {
         case .sharp:
             content
         case .rounded(let cornerRadius):
-            content.clipShape(RoundedRectangle(cornerRadius: cornerRadius.rawValue, style: .continuous))
+            content.clipShape(RoundedRectangle(cornerRadius: cornerRadius.value, style: .continuous))
         case .capsule:
             content.clipShape(Capsule())
         case .circle:

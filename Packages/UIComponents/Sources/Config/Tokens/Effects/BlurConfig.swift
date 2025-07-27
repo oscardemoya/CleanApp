@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol BlurConfig {
+public protocol BlurConfig: Sendable {
     func radius(for intensity: BlurIntensity) -> CGFloat
 }
 

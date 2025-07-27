@@ -8,14 +8,15 @@
 import Foundation
 import UIKit
 
-public protocol BorderWidthConfig {
+public protocol BorderWidthConfig: Sendable {
     func value(for borderWidth: BorderWidth) -> CGFloat
 }
 
-struct DefaultBorderWidthConfig: BorderWidthConfig {
+@MainActor
+struct DefaultBorderWidthConfig: @MainActor BorderWidthConfig {
     func value(for borderWidth: BorderWidth) -> CGFloat {
         switch borderWidth {
-        case .quark: 1 / UIScreen.main.scale
+        case .quark: 1 / 3
         case .regular: 1
         case .medium: 2
         case .large: 4

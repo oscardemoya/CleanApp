@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-public protocol ButtonConfig {
+public protocol ButtonConfig: Sendable {
     var cornerStyle: CornerStyle { get }
     var textStyle: TextStyle { get }
     var textCase: Text.Case? { get }
@@ -18,10 +18,11 @@ public protocol ButtonConfig {
     func disabledForegroundColor(for hierarchy: Hierarchy) -> Color
 }
 
-struct DefaultButtonConfig: ButtonConfig {
+@MainActor
+struct DefaultButtonConfig: @MainActor ButtonConfig {
     let cornerStyle: CornerStyle = .rounded(.small)
     let textStyle: TextStyle = .large
-    var textCase: Text.Case? = .uppercase
+    var textCase: Text.Case? = .none
     var maxWidth: CGFloat? = .infinity
     
     func backgroundColor(for hierarchy: Hierarchy) -> Color {

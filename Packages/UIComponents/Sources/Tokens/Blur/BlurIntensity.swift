@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-public enum BlurIntensity: CGFloat, Identifiable, Hashable, CaseIterable {
+@MainActor
+public enum BlurIntensity: CGFloat, @MainActor Identifiable, Hashable, CaseIterable {
     case none
     case light
     case medium

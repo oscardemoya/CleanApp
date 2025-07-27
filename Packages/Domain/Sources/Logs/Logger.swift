@@ -8,6 +8,4 @@
 import OSLog
 import Toolkit
 
-let logger = {
-    Config.isLoggingEnabled ? Logger(subsystem: Bundle.identifier, category: "domain") : Logger(.disabled)
-}()
+let logger = Logger(subsystem: Bundle.identifier, category: "domain") // Logger(.disabled)

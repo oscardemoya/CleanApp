@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-public protocol FontFamily {
+public protocol FontFamily: Sendable {
     func fontName(weight: Font.Weight) -> String
 }
 

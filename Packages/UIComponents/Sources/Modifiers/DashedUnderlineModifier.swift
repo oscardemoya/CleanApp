@@ -34,7 +34,7 @@ private struct DashedUnderlineModifier: ViewModifier {
                         path.move(to: CGPoint(x: 0, y: geometry.size.height))
                         path.addLine(to: CGPoint(x: geometry.size.width, y: geometry.size.height))
                     }
-                    .stroke(style: StrokeStyle(lineWidth: borderWidth.rawValue, dash: dash))
+                    .stroke(style: StrokeStyle(lineWidth: borderWidth.value, dash: dash))
                     .foregroundColor(borderColor)
                 }
             )

@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-public enum Spacing: Identifiable, Hashable, CaseIterable {
+@MainActor
+public enum Spacing: @MainActor Identifiable, Hashable, CaseIterable, Sendable {
     case zero
     case quark
     case nano

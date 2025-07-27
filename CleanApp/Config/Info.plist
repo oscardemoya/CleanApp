@@ -4,6 +4,14 @@
 <dict>
 	<key>Configuration</key>
 	<string>$(CONFIGURATION)</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Gotham-Black.ttf</string>
+		<string>Gotham-Bold.ttf</string>
+		<string>Gotham-Book.ttf</string>
+		<string>Gotham-Light.ttf</string>
+		<string>Gotham-Medium.ttf</string>
+	</array>
 	<key>UILaunchScreen</key>
 	<dict>
 		<key>UIColorName</key>

@@ -14,7 +14,11 @@ extension LoginView: View {
         NavigationStack(path: $path) {
             ScrollView {
                 contentView
-                    .navigationDestination(for: Destination.self, destination: destination)
+                    .navigationDestination(for: Destination.self) { destination in
+                        switch destination {
+                        case .forgotPassword: ForgotPasswordView()
+                        }
+                    }
             }
             .scrollBounceBehavior(.basedOnSize)
             .navigationTitle("Login")
@@ -47,12 +51,6 @@ extension LoginView: View {
             endPoint: .center
         )
         .ignoresSafeArea()
-    }
-    
-    @ViewBuilder func destination(screen: Destination) -> some View {
-        switch screen {
-        case .forgotPassword: ForgotPasswordView()
-        }
     }
 }
 

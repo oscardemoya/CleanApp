@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-public enum ColorShade: CaseIterable, Identifiable {
+@MainActor
+public enum ColorShade: CaseIterable, @MainActor Identifiable {
     case shade1
     case shade2
     case shade3
@@ -33,6 +34,7 @@ public enum ColorShade: CaseIterable, Identifiable {
     var blendIntensity: CGFloat { Config.shared.colorShade.blendIntensity(shade: self) }
 }
 
+@MainActor
 public extension Color {
     func shade(_ shade: ColorShade) -> Color {
         guard let blendColor = shade.blendColor else { return self }

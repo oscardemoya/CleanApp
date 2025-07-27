@@ -8,14 +8,15 @@
 import SwiftUI
 import UIComponents
 
-struct AppButtonConfig: ButtonConfig {
+@MainActor
+struct AppButtonConfig: @MainActor ButtonConfig {
     static var shared = AppButtonConfig()
     
     // MARK: - General
     let cornerStyle: CornerStyle = .rounded(.small)
     let textStyle: TextStyle = .large
     let textCase: Text.Case? = .none
-    let maxWidth: CGFloat? = 400
+    let maxWidth: CGFloat? = .infinity
     
     func backgroundColor(for hierarchy: Hierarchy) -> Color {
         switch hierarchy {

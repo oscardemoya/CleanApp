@@ -10,7 +10,8 @@ import Toolkit
 import CleanArchitecture
 import Domain
 
-final class MockAuthService: AuthService {
+@MainActor
+final class MockAuthService: @MainActor AuthService {
     var currentUser: User?
     var currentToken: AuthToken?
     

@@ -7,12 +7,13 @@
 
 import UIKit
 
-public enum BorderWidth: CGFloat {
+@MainActor
+public enum BorderWidth: Sendable {
     case quark
     case regular
     case medium
     case large
     case extraLarge
     
-    public var rawValue: CGFloat { Config.shared.borderWidth.value(for: self) }
+    public var value: CGFloat { Config.shared.borderWidth.value(for: self) }
 }

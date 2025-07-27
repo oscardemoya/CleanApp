@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-public struct SquaredCheckboxStyle: CheckboxStyle {
+@MainActor
+public struct SquaredCheckboxStyle: @MainActor CheckboxStyle {
     @ViewBuilder
     public func makeBody(configuration: Configuration) -> some View {
         Image(systemName: configuration.isChecked ? "checkmark.square.fill" : "square")

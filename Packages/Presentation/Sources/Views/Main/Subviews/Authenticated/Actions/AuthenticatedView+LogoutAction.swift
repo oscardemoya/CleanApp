@@ -7,6 +7,7 @@
 
 import Domain
 
+@MainActor
 extension AuthenticatedView {
     func logout() {
         Task {

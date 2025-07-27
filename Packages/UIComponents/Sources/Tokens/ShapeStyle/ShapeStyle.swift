@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@MainActor
 public extension ShapeStyle where Self == Color {
     // MARK: - Brand
     static var primaryBrand: Color { Config.shared.color.primaryBrand }

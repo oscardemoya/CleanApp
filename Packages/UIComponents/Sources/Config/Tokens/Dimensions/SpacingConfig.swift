@@ -7,11 +7,12 @@
 
 import Foundation
 
-public protocol SpacingConfig {
+public protocol SpacingConfig: Sendable {
     func value(for spacing: Spacing) -> CGFloat
 }
 
-struct DefaultSpacingConfig: SpacingConfig {
+@MainActor
+struct DefaultSpacingConfig: @MainActor SpacingConfig {
     func value(for spacing: Spacing) -> CGFloat {
         guard let index = spacing.index else { return 0 }
         let group = index / 3

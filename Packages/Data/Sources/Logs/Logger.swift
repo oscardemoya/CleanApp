@@ -7,6 +7,4 @@
 
 import OSLog
 
-let logger = {
-    Config.isLoggingEnabled ? Logger(subsystem: Bundle.identifier, category: "data") : Logger(.disabled)
-}()
+let logger = Logger(subsystem: Bundle.identifier, category: "data") // Logger(.disabled)

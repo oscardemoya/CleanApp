@@ -5,9 +5,9 @@
 //  Created by Oscar De Moya on 14/03/24.
 //
 
-public class Config {
+@MainActor
+public final class Config {
     public static let shared = Config()
-    public static var isLoggingEnabled = true
 
     // Tokens
     public var sizing: Sizing = .regular

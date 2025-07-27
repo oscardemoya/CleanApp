@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 
+@MainActor
 public extension UIComponents {
     static func configure(sizing: Sizing) {
         Config.shared.sizing = sizing

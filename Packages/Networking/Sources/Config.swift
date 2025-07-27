@@ -7,7 +7,6 @@
 
 import Foundation
 
-public class Config {
+public actor Config {
     public static let shared = Config()
-    public static var isLoggingEnabled = true
 }

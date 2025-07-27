@@ -14,21 +14,23 @@ protocol Client {
 public actor APIClient: Client {
     let api: any API
     let session: URLSession
+    var defaultHeaders: [String: String] = [:]
     let decoder: JSONDecoder
     let delegate: URLSessionTaskDelegate?
     
-    public init(api: any API, session: URLSessionConfiguration = .default, decoder: JSONDecoder = .init(),
-                delegate: URLSessionTaskDelegate? = nil) {
+    public init(api: any API, session: URLSessionConfiguration = .default, defaultHeaders: [String: String] = [:],
+                decoder: JSONDecoder = .init(), delegate: URLSessionTaskDelegate? = nil) {
         self.api = api
         self.session = URLSession(configuration: session)
+        self.defaultHeaders = defaultHeaders
         self.decoder = decoder
         self.delegate = delegate
     }
     
-    public init(baseURL: URL, session: URLSessionConfiguration = .default, decoder: JSONDecoder = .init(),
-                delegate: URLSessionTaskDelegate? = nil) {
+    public init(baseURL: URL, session: URLSessionConfiguration = .default, defaultHeaders: [String: String] = [:],
+                decoder: JSONDecoder = .init(), delegate: URLSessionTaskDelegate? = nil) {
         let api = DefaultAPI(baseURL: baseURL)
-        self.init(api: api, session: session, decoder: decoder, delegate: delegate)
+        self.init(api: api, session: session, defaultHeaders: defaultHeaders, decoder: decoder, delegate: delegate)
     }
     
     public func send<T: Decodable>(request: Request<Response<T>>) async throws -> Response<T> {

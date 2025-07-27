@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-public protocol TextButtonConfig {
+public protocol TextButtonConfig: Sendable {
     // MARK: - General
     var textStyle: TextStyle { get }
     var textCase: Text.Case? { get }
@@ -16,5 +16,5 @@ public protocol TextButtonConfig {
 struct DefaultTextButtonConfig: TextButtonConfig {
     // MARK: - General
     let textStyle: TextStyle = .large
-    var textCase: Text.Case? = .uppercase
+    var textCase: Text.Case? = .none
 }

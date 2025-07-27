@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-public struct RoundedCheckboxStyle: CheckboxStyle {
+@MainActor
+public struct RoundedCheckboxStyle: @MainActor CheckboxStyle {
     @ViewBuilder
     public func makeBody(configuration: Configuration) -> some View {
         Image(systemName: configuration.isChecked ? "checkmark.circle.fill" : "circle")

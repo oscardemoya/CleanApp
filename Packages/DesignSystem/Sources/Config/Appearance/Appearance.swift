@@ -11,6 +11,7 @@ import UIComponents
 import UIKit
 #endif
 
+@MainActor
 struct Appearance {
     static func configure() {
         configureNavigationBars()

@@ -19,7 +19,7 @@ public extension NumberFormatter {
         return formatter
     }
     
-    static var currency: NumberFormatter = {
+    static let currency: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.locale = Locale.current
         formatter.numberStyle = .currency
@@ -29,7 +29,7 @@ public extension NumberFormatter {
         return formatter
     }()
     
-    static var optionalCurrency: NumberFormatter = {
+    static let optionalCurrency: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.locale = Locale.current
         formatter.numberStyle = .currency

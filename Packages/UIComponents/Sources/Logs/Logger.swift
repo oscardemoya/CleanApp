@@ -8,6 +8,4 @@
 import Foundation
 import OSLog
 
-let logger = {
-    Config.isLoggingEnabled ? Logger(subsystem: Bundle.identifier, category: "ui-components") : Logger(.disabled)
-}()
+let logger = Logger(subsystem: Bundle.identifier, category: "ui-components") // Logger(.disabled)

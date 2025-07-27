@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-public struct HierarchicalDateFieldStyle: DateFieldStyle {
+@MainActor
+public struct HierarchicalDateFieldStyle: @MainActor DateFieldStyle {
     var hierarchy: Hierarchy = .primary
     
     public func makeBody(configuration: Configuration) -> some View {
@@ -22,6 +23,7 @@ public struct HierarchicalDateFieldStyle: DateFieldStyle {
     }
 }
 
+@MainActor
 public extension DateFieldStyle where Self == HierarchicalDateFieldStyle {
     static func hierarchical(_ hierarchy: Hierarchy) -> Self { .init(hierarchy: hierarchy) }
     static var primary: Self { .init(hierarchy: .primary) }

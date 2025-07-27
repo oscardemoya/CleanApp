@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-public enum FontSource {
+public enum FontSource: Sendable {
     case system
     case custom(FontFamily)
 }

@@ -125,7 +125,7 @@ public macro MakeRepository<T>(_ type: Any.Type? = nil) = #externalMacro(
 ///     }
 ///
 @freestanding(declaration, names: arbitrary)
-public macro MakeUseCase<T, U>() = #externalMacro(
+public macro MakeUseCase<RepositoryTypes, UseCaseType, each Dependencies>() = #externalMacro(
     module: "CleanArchitectureMacros",
     type: "MakeUseCaseMacro"
 )
@@ -201,31 +201,31 @@ public macro ServiceContainer() = #externalMacro(
 ///     @ModelConvertible
 ///     struct LoginCredentialsData {
 ///         @Convertible(key: "username")
-///         let email: String
+///         let idNumber: String
 ///         let password: String
 ///     }
 ///
 /// produces:
 ///
 ///     struct LoginCredentialsData {
-///         let email: String
+///         let idNumber: String
 ///         let password: String
 ///
 ///         var asDomainEntity: LoginCredentials {
 ///             .init(
-///                 username: email,
+///                 username: idNumber,
 ///                 password: password
 ///             )
 ///         }
 ///
-///         init(email: String, password: String) {
-///             self.email = email
+///         init(idNumber: String, password: String) {
+///             self.idNumber = idNumber
 ///             self.password = password
 ///         }
 ///
 ///         init(entity: LoginCredentials) {
 ///             self.init(
-///                 email: entity.username,
+///                 idNumber: entity.username,
 ///                 password: entity.password
 ///             )
 ///         }
@@ -265,8 +265,16 @@ public macro Convertible(key: String) = #externalMacro(
 ///         }
 ///     }
 ///
-@attached(member, names: named(init))
+@attached(member, names: named(init), named(==))
 public macro Entity() = #externalMacro(
     module: "CleanArchitectureMacros",
     type: "EntityMacro"
+)
+
+/// Marks a property to be included in Equatable comparison
+/// Use @EquatableKey for properties that define entity identity
+@attached(peer)
+public macro EquatableKey() = #externalMacro(
+    module: "CleanArchitectureMacros",
+    type: "EquatableKeyMacro"
 )

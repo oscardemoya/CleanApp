@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Response<T> {
+public struct Response<T: Sendable>: Sendable {
     public let request: Request<Self>
     public let data: Data
     public let response: URLResponse

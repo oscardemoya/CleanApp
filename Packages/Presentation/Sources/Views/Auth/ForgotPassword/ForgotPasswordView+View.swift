@@ -9,6 +9,7 @@ import SwiftUI
 import Domain
 import UIComponents
 
+@MainActor
 extension ForgotPasswordView: View {
     public var body: some View {
         ScrollView {

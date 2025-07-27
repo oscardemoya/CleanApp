@@ -6,11 +6,12 @@
 //
 
 import Toolkit
+import Networking
 import Data
 
 extension DataSourceFactory {
     init(environment: AppEnvironment = .current) {
-        let apiClient = APIClientFactory.makeAPIClient(environment: environment)
+        let apiClient = APIClient.shared(environment: environment)
         let keychainManager = AppKeychainManager()
         self.init(
             remoteDataSourceConfig: DefaultRemoteDataSourceConfig(apiClient: apiClient),

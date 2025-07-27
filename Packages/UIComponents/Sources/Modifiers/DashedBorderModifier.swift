@@ -32,8 +32,8 @@ private struct DashedBorderModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
             .overlay(
-                RoundedRectangle(cornerRadius: cornerRadius.rawValue, style: .continuous)
-                    .strokeBorder(style: StrokeStyle(lineWidth: borderWidth.rawValue, dash: dash))
+                RoundedRectangle(cornerRadius: cornerRadius.value, style: .continuous)
+                    .strokeBorder(style: StrokeStyle(lineWidth: borderWidth.value, dash: dash))
                     .foregroundColor(borderColor)
             )
     }

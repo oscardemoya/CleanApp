@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 
+@MainActor
 public extension UIComponents {
     static func configureButtons(with config: any ButtonConfig) {
         Config.shared.button = config

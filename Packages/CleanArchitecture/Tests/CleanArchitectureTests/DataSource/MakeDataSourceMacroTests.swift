@@ -9,7 +9,7 @@ import XCTest
 #if canImport(CleanArchitectureMacros)
 @testable import CleanArchitectureMacros
 
-let makeDataSourceTestMacros: [String: Macro.Type] = [
+nonisolated(unsafe) let makeDataSourceTestMacros: [String: Macro.Type] = [
     "MakeDataSource": MakeDataSourceMacro.self
 ]
 #endif

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-public enum Sizing: String, Identifiable, Hashable, CaseIterable {
+public enum Sizing: String, Identifiable, Hashable, CaseIterable, Sendable {
     case compact
     case regular
     case spacious
@@ -15,7 +15,8 @@ public enum Sizing: String, Identifiable, Hashable, CaseIterable {
     public var id: Self { self }
 }
 
-struct SizingValues {
+@MainActor
+struct SizingValues: Sendable {
     var compact: CGFloat
     var regular: CGFloat
     var spacious: CGFloat

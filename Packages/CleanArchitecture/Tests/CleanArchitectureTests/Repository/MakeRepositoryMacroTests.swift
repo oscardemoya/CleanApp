@@ -9,7 +9,7 @@ import XCTest
 #if canImport(CleanArchitectureMacros)
 @testable import CleanArchitectureMacros
 
-let makeRepositoryTestMacros: [String: Macro.Type] = [
+nonisolated(unsafe) let makeRepositoryTestMacros: [String: Macro.Type] = [
     "MakeRepository": MakeRepositoryMacro.self
 ]
 #endif

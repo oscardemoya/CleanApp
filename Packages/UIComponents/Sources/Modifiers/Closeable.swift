@@ -10,6 +10,7 @@ import SwiftUI
 public struct ClosableModifier: ViewModifier {
     @Environment(\.dismiss) private var dismiss
     
+    @MainActor
     public enum ColorTheme {
         case light
         case dark

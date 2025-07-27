@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 
+@MainActor
 public extension UIComponents {
     static func configureBorderWidth(with config: any BorderWidthConfig) {
         Config.shared.borderWidth = config

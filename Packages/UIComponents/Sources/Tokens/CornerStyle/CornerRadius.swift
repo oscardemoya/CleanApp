@@ -7,7 +7,8 @@
 
 import Foundation
 
-public enum CornerRadius: CGFloat {
+@MainActor
+public enum CornerRadius: Sendable {
     case nano
     case extraSmall
     case small
@@ -15,5 +16,5 @@ public enum CornerRadius: CGFloat {
     case large
     case extraLarge
     
-    public var rawValue: CGFloat { Config.shared.cornerRadius.value(for: self) }
+    public var value: CGFloat { Config.shared.cornerRadius.value(for: self) }
 }

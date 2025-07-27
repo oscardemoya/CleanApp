@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Request<Response> {
+public struct Request<Response>: Sendable {
     var method: HTTPMethod
     let path: String
     let queryItems: [URLQueryItem]?

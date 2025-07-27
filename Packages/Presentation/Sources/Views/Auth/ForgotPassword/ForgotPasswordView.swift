@@ -9,6 +9,7 @@ import SwiftUI
 import Domain
 import UIComponents
 
+@MainActor
 public struct ForgotPasswordView {
     @Environment(\.authService) var authService: AuthService?
     @State var state: ViewState<ResetPasswordResponse> = .initial

@@ -18,6 +18,7 @@ struct CleanArchitecturePlugin: CompilerPlugin {
         ConvertibleMacro.self,
         ModelConvertibleMacro.self,
         EntityMacro.self,
+        EquatableKeyMacro.self,
         MakeDataSourceMacro.self,
         MakeRepositoryMacro.self,
         MakeUseCaseMacro.self,

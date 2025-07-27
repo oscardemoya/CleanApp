@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-public protocol ColorShadeConfig {
+public protocol ColorShadeConfig: Sendable {
     func blendIntensity(shade: ColorShade) -> CGFloat
 }
 

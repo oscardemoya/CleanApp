@@ -6,20 +6,26 @@
 //
 
 import Network
-import Combine
+import SwiftUI
 
-public class NetworkMonitor: ObservableObject {
+@MainActor
+@Observable
+public final class NetworkMonitor {
     private let monitor = NWPathMonitor()
-    private let queue = DispatchQueue.global(qos: .background)
-    
-    @Published public var isConnected: Bool = true
-    
+    private let queue = DispatchQueue(label: "NetworkMonitorQueue", qos: .background)
+
+    public private(set) var isConnected: Bool = true
+
     public init() {
         monitor.pathUpdateHandler = { [weak self] path in
-            DispatchQueue.main.async {
+            Task { @MainActor in
                 self?.isConnected = path.status == .satisfied
             }
         }
         monitor.start(queue: queue)
+    }
+
+    deinit {
+        monitor.cancel()
     }
 }

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-public protocol TextFieldConfig {
+public protocol TextFieldConfig: Sendable {
     // MARK: - General
     var textStyle: TextStyle { get }
     var textCase: Text.Case? { get }
@@ -18,7 +18,7 @@ public protocol TextFieldConfig {
 
 struct DefaultTextFieldConfig: TextFieldConfig {
     // MARK: - General
-    let textStyle: TextStyle = .headline
+    let textStyle: TextStyle = .body
     let textCase: Text.Case? = .none
     let borderStyle: BorderStyle = .stroke(.regular)
     let borderColor: Color = Color(.nonDecorativeElement)

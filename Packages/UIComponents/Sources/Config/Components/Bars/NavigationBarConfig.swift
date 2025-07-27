@@ -7,14 +7,15 @@
 
 import SwiftUI
 
-public protocol NavigationBarConfig {
+public protocol NavigationBarConfig: Sendable {
     var textStyle: TextStyle { get }
     var textCase: Text.Case? { get }
     
     func titleColor(_ hierarchy: Hierarchy) -> Color
 }
 
-struct DefaultNavigationBarConfig: NavigationBarConfig {
+@MainActor
+struct DefaultNavigationBarConfig: @MainActor NavigationBarConfig {
     let textStyle: TextStyle = .large
     let textCase: Text.Case? = .uppercase
     

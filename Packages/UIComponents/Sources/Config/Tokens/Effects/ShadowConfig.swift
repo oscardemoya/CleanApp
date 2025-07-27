@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol ShadowConfig {
+public protocol ShadowConfig: Sendable {
     func opacity(for style: ShadowStyle) -> CGFloat
     func radius(for style: ShadowStyle) -> CGFloat
     func offset(for style: ShadowStyle) -> CGPoint

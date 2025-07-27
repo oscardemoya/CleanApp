@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-public enum Padding: Identifiable, Hashable, CaseIterable {
+@MainActor
+public enum Padding: @MainActor Identifiable, Hashable, CaseIterable {
     case zero
     case quark
     case nano

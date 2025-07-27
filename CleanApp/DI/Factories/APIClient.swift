@@ -1,15 +1,29 @@
 //
-//  APIClientFactory.swift
+//  APIClient.swift
 //  CleanApp
 //
-//  Created by Oscar De Moya on 2025/7/6.
+//  Created by Oscar De Moya on 2025/7/26.
 //
 
 import Foundation
 import Networking
 
-struct APIClientFactory {
-    static func makeAPIClient(environment: AppEnvironment = .current) -> APIClient {
+extension APIClient {
+    nonisolated(unsafe) private static var _shared: APIClient?
+    private static let lock = NSLock()
+    
+    static func shared(environment: AppEnvironment) -> APIClient {
+        lock.lock()
+        defer { lock.unlock() }
+        if let existing = _shared {
+            return existing
+        }
+        let client = makeAPIClient(environment: environment)
+        _shared = client
+        return client
+    }
+    
+    static func makeAPIClient(environment: AppEnvironment) -> APIClient {
         let api = RestAPI(environment: environment)
         let configuration: URLSessionConfiguration = .default
         configuration.requestCachePolicy = .reloadIgnoringLocalCacheData

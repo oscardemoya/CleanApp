@@ -14,7 +14,7 @@ public struct ResetPasswordRequest: Sendable {
 }
 
 @Entity
-public struct ResetPasswordResponse: Equatable {
+public struct ResetPasswordResponse: Equatable, Sendable {
     public let username: String
     
     public static func == (lhs: Self, rhs: Self) -> Bool {

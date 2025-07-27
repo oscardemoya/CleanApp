@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-public protocol ColorConfig {
+public protocol ColorConfig: Sendable {
     // MARK: - Brand
     var primaryBrand: Color { get }
     var secondaryBrand: Color { get }

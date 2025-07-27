@@ -9,7 +9,7 @@ import XCTest
 #if canImport(CleanArchitectureMacros)
 @testable import CleanArchitectureMacros
 
-let makeModelConvertibleTestMacros: [String: Macro.Type] = [
+nonisolated(unsafe) let makeModelConvertibleTestMacros: [String: Macro.Type] = [
     "ModelConvertible": ModelConvertibleMacro.self,
     "Convertible": ConvertibleMacro.self
 ]

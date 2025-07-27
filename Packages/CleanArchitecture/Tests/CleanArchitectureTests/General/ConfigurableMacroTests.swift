@@ -9,7 +9,7 @@ import XCTest
 #if canImport(CleanArchitectureMacros)
 @testable import CleanArchitectureMacros
 
-let configurableTestMacros: [String: Macro.Type] = [
+nonisolated(unsafe) let configurableTestMacros: [String: Macro.Type] = [
     "Configurable": ConfigurableMacro.self
 ]
 #endif

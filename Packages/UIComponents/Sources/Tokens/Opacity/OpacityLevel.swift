@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-public enum OpacityLevel: CGFloat, Identifiable, Hashable, CaseIterable {
+@MainActor
+public enum OpacityLevel: CGFloat, @MainActor Identifiable, Hashable, CaseIterable, Sendable {
     case transparent
     case lighter
     case light

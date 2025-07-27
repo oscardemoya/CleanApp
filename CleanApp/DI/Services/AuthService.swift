@@ -13,7 +13,7 @@ import Data
 @MainActor
 @Observable
 @AppService<UseCaseFactory>
-final class DefaultAuthService: AuthService {
+final class DefaultAuthService: @MainActor AuthService {
     var currentUser: User?
     private let loginUseCase: LoginUseCase
     private let currentAuthTokenUseCase: CurrentAuthTokenUseCase

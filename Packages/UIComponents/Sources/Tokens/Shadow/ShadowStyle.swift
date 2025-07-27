@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-public enum ShadowStyle: Identifiable, Hashable, CaseIterable {
+@MainActor
+public enum ShadowStyle: @MainActor Identifiable, Hashable, CaseIterable, Sendable {
     case subtle
     case light
     case medium

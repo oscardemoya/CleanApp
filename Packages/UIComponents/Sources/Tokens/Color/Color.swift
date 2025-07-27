@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@MainActor
 public extension Color {
     // MARK: - Brand
     var primaryBrand: Color { Config.shared.color.primaryBrand }

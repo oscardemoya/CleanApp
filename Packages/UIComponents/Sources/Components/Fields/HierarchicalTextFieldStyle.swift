@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-public struct HierarchicalTextFieldStyle: TextFieldStyle {
+@MainActor
+public struct HierarchicalTextFieldStyle: @MainActor TextFieldStyle {
     var hierarchy: Hierarchy = .primary
     
     // swiftlint:disable:next identifier_name
@@ -26,11 +27,13 @@ public struct HierarchicalTextFieldStyle: TextFieldStyle {
     }
 }
 
+@MainActor
 public extension TextFieldStyle where Self == HierarchicalTextFieldStyle {
     static var primary: HierarchicalTextFieldStyle { .init(hierarchy: .primary) }
     static var secondary: HierarchicalTextFieldStyle { .init(hierarchy: .secondary) }
 }
 
+@MainActor
 public extension Hierarchy {
     var textFieldStyle: HierarchicalTextFieldStyle {
         switch self {

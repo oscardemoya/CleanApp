@@ -7,7 +7,8 @@
 
 import Foundation
 
-public enum BorderStyle: Identifiable, Hashable {
+@MainActor
+public enum BorderStyle: @MainActor Identifiable, Hashable, Sendable {
     case none
     case stroke(BorderWidth)
     

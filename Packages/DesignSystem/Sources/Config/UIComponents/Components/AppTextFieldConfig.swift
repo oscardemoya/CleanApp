@@ -8,11 +8,12 @@
 import SwiftUI
 import UIComponents
 
-struct AppTextFieldConfig: TextFieldConfig {
+@MainActor
+struct AppTextFieldConfig: @MainActor TextFieldConfig {
     static var shared: Self { .init() }
     
     // MARK: - General
-    let textStyle: TextStyle = .headline
+    let textStyle: TextStyle = .body
     let textCase: Text.Case? = .none
     let borderStyle: BorderStyle = .stroke(.regular)
     let borderColor: Color = .nonDecorativeElement

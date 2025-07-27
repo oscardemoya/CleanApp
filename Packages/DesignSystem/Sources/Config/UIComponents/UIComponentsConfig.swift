@@ -7,6 +7,7 @@
 
 import UIComponents
 
+@MainActor
 extension UIComponents {
     static func configure() {
         UIComponents.configure(sizing: .regular)

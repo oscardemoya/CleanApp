@@ -10,7 +10,7 @@ import DesignSystem
 
 struct PreviewConfigurator: ViewModifier {
     init() {
-        SourceSansFontFamily.shared.register()
+        GothamFontFamily.shared.register()
         DesignSystem.configure()
     }
 

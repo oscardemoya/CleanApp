@@ -26,14 +26,14 @@ public struct DateFieldStyleConfiguration {
     }
 }
 
-struct DateFieldStyleKey: EnvironmentKey {
-    static let defaultValue = AnyDateFieldStyle(style: .automatic)
+struct DateFieldKey: @MainActor EnvironmentKey {
+    @MainActor static var defaultValue = AnyDateFieldStyle(style: .automatic)
 }
 
 extension EnvironmentValues {
-    var dateFieldStyle: AnyDateFieldStyle {
-        get { self[DateFieldStyleKey.self] }
-        set { self[DateFieldStyleKey.self] = newValue }
+    @MainActor var dateFieldStyle: AnyDateFieldStyle {
+        get { self[DateFieldKey.self] }
+        set { self[DateFieldKey.self] = newValue }
     }
 }
 
@@ -43,7 +43,8 @@ public extension View {
     }
 }
 
-struct AnyDateFieldStyle: DateFieldStyle {
+@MainActor
+struct AnyDateFieldStyle: @MainActor DateFieldStyle {
     private var _makeBody: (Configuration) -> AnyView
     
     init<S: DateFieldStyle>(style: S) {

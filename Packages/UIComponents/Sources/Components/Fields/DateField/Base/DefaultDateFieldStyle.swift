@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-public struct DefaultDateFieldStyle: DateFieldStyle {
+@MainActor
+public struct DefaultDateFieldStyle: @MainActor DateFieldStyle {
     @ViewBuilder
     public func makeBody(configuration: Configuration) -> some View {
         VStack(spacing: 0) {
@@ -22,5 +23,5 @@ public struct DefaultDateFieldStyle: DateFieldStyle {
 }
 
 public extension DateFieldStyle where Self == DefaultDateFieldStyle {
-    static var automatic: DefaultDateFieldStyle { .init() }
+    @MainActor static var automatic: DefaultDateFieldStyle { .init() }
 }

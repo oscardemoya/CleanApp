@@ -8,8 +8,9 @@
 import SwiftUI
 import UIComponents
 
-struct AppNavigationBarConfig: NavigationBarConfig {
-    static var shared: Self { .init() }
+@MainActor
+struct AppNavigationBarConfig: @MainActor NavigationBarConfig {
+    static var shared = AppNavigationBarConfig()
     let textStyle: TextStyle = .large
     let textCase: Text.Case? = .uppercase
     

@@ -9,13 +9,14 @@ import SwiftUI
 import Domain
 import UIComponents
 
+@MainActor
 public struct LoginView {
     @Environment(\.authService) var authService: AuthService?
     @Binding var state: ViewState<AuthToken>
     @State var form = LoginFormModel()
     @State var path = NavigationPath()
     
-    enum Destination: String, Hashable {
+    public enum Destination: String, Hashable, Sendable {
         case forgotPassword
     }
     

@@ -7,6 +7,7 @@
 
 import Foundation
 
+nonisolated
 public protocol API {
     var baseURL: URL { get }
 }

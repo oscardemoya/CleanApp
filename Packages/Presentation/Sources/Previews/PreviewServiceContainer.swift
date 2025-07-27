@@ -8,6 +8,7 @@
 #if DEBUG
 import Domain
 
+@MainActor
 final class PreviewServiceContainer: ServiceProvider {
     let authService: AuthService = MockAuthService()
 }

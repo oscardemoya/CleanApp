@@ -8,6 +8,6 @@
 import Foundation
 
 public extension Date.ParseStrategy {
-    static var yearMonthDaySlashed = Self(format: "\(year: .defaultDigits)/\(month: .twoDigits)/\(day: .twoDigits)",
+    static let yearMonthDaySlashed = Self(format: "\(year: .defaultDigits)/\(month: .twoDigits)/\(day: .twoDigits)",
                                           locale: .current, timeZone: .current)
 }
